@@ -1,0 +1,491 @@
+* {
+    padding: 0;
+    margin: 0;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+
+body {
+    background-color: rgb(246,246,246);
+}
+
+div {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+.clear {
+    clear: both;
+}
+
+.basic-panel {
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header {
+    width: 100%;
+}
+
+.header-inner {
+    position: fixed;
+    z-index: 500;
+    top: 0;
+    width: 80%;
+    padding: 0 10%;
+    height: 52px;
+    line-height: 52px;
+}
+
+.header-inner block {
+    display: inline-block;
+}
+
+.header--logo {
+    float: left;
+}
+
+.header--logo--img {
+    height: 40px;
+    margin: 6px auto;
+}
+
+.header--logo--img:hover {
+    cursor: pointer;
+}
+
+.header--nav {
+    float: left;
+    margin-left: 20px;
+}
+
+.header--nav--item {
+    list-style: none;
+    float: left;
+    padding-left: 20px;
+    color: darkgray;
+}
+
+.header--nav--item:hover {
+    cursor: pointer;
+}
+
+.header--nav--item__selected {
+    color: black;
+}
+
+
+.header--nav--item__highlighted {
+    color: darkgoldenrod;
+}
+
+.header--user {
+    float: right;
+    margin-right: 20px;
+}
+
+.header--user--login-register {
+    color: dimgray;
+}
+
+.header--user--login-register:hover {
+    cursor: pointer;
+    border-bottom: 2px solid gray;
+}
+
+.main {
+    margin-top: 92px;
+}
+
+.main-inner {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.main--banner {
+    height: 400px;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.main--banner--item {
+    list-style: none;
+    position: absolute;
+    z-index: 100;
+    -webkit-transition: opacity ease-in-out 0.5s;
+}
+
+.banner--indicator-container {
+    position: absolute;
+    bottom: 0px;
+    z-index: 300;
+    width: 1000px;
+}
+
+.banner--indicator--list {
+    margin: 0 auto;
+    list-style: none;
+    width: 150px;
+}
+
+.banner--indicator{
+    text-align: center;
+    float: left;
+    color: white;
+    width: 50px;
+    font-size: 50px;
+    opacity: 0.2;
+}
+
+.banner--indicator:hover {
+    cursor: pointer;
+}
+
+.banner--indicator__highlighted {
+    opacity: 1;
+    text-shadow: 0px 0px 10px #000;
+}
+
+.main--recommend {
+    height: 500px;
+    margin-top: 20px;
+    position: relative;
+}
+
+.main--panel--header {
+    height: 60px;
+    padding-bottom: 40px;
+}
+
+.main--panel--title {
+    color: dimgray;
+    margin: 0 50px;
+    font-size: 1.5em;
+    line-height: 60px;
+    border-bottom: 2px solid #eee;
+}
+
+.main--new {
+    height: 300px;
+    margin-top: 20px;
+}
+
+.main--billboard {
+    height: 600px;
+    margin-top: 20px;
+}
+
+.main--music-list {
+    list-style: none;
+    width: 900px;
+    padding: 0 50px;
+}
+
+.main--music {
+    float: left;
+    width: 225px;
+    height: 200px;
+}
+
+.main--music:hover {
+    cursor: pointer;
+}
+
+.main--music-cover {
+    width: 120px;
+    height: 120px;
+    margin-left: 52.5px;
+}
+
+.main--music-title {
+    border-top: 1px solid #ccc;
+    width: 120px;
+    margin-left: 52.5px;
+    line-height: 25px;
+    text-align: center;
+    color: dimgray;
+}
+
+.footer {
+    margin-top: 40px;
+}
+
+.footer-inner {
+    height: 80px;
+    width: 1000px;
+    margin: 0 auto;
+    padding-bottom: 52px;
+}
+
+.copyright {
+    float: right;
+    line-height: 80px;
+    color: lightgray;
+}
+
+.player-bar {
+    height: 52px;
+    width: 100%;
+    position: fixed;
+    z-index: 600;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.8);
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.4);
+}
+
+.player-bar-inner {
+    width: 1000px;
+    margin: 0 auto;
+    line-height: 52px;
+}
+
+.play-button {
+    float: left;
+    color: white;
+    font-size: 1.25em;
+    width: 50px;
+    text-align: center;
+    -webkit-transition: all 0.1s;
+}
+
+.play-button:hover {
+    cursor: pointer;
+    font-size: 1.4em;
+}
+
+.progress-bar_container {
+    position: relative;
+    float: left;
+    width: 400px;
+    height: 4px;
+    padding: 24px 20px;
+}
+
+.progress-bar_background {
+    position: absolute;
+    width: 400px;
+    height: 4px;
+    border-radius: 2px;
+    background-color: rgba(255,255,255,0.2);
+}
+
+.progress-bar_trace {
+    position: absolute;
+    height: 4px;
+    width: 0px;
+    background-color: white;
+    border-radius: 2px;
+}
+
+.progress-button {
+    position: absolute;
+    top: 19px;
+    left: 8px;
+    width: 14px;
+    height: 14px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    border-radius: 7px;
+}
+
+.progress-button:hover {
+    cursor: pointer;
+}
+
+.upload-container {
+    width: 600px;
+    height: 300px;
+    margin: 50px auto;
+    background-color: white;
+    box-shadow: 0px 3px 5px rgba(0,0,0,0.25);
+    padding: 50px;
+}
+
+.upload-button {
+    width: 250px;
+    height: 60px;
+    margin: 110px auto;
+    background-color: deepskyblue;
+    box-shadow: 0px 2px 3px rgba(0,0,0,0.25);
+    line-height: 60px;
+    font-size: 1.25em;
+    text-align: center;
+    color: white;
+}
+
+.upload-button::before {
+    content: "上传音乐";
+}
+
+.upload-button__uploading {
+	background-color: lightskyblue;
+}
+
+.upload-button__uploading::before {
+	content: "上传中...";
+}
+
+.upload-button__succeed {
+    background-color: limegreen;
+}
+
+.upload-button__succeed::before {
+    content: "上传成功";
+}
+
+.upload-button__failed {
+    background-color: salmon;
+}
+
+.upload-button__failed::before {
+    content: "上传失败"；
+}
+
+.upload-button:hover {
+    cursor: pointer;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.4);
+}
+
+.audit-list-container {
+    position: absolute;
+    top: 80px;
+    left: 50px;
+    width: 300px;
+    height: 500px;
+    background-color: white;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.4);
+}
+
+.audit-list--header {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #777;
+    border-bottom: 2px solid #eee;
+    margin: 0 10px;
+}
+
+.audit-list {
+    list-style: none;
+    overflow-y: auto;
+    height: 450px;
+    margin: 0 10px;
+}
+
+.audit-item {
+    height: 60px;
+    padding-left: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.audit-item--title {
+    padding-top: 10px;
+    display: block;
+    line-height: 20px;
+    font-weight: 500;
+}
+
+.audit-item--id {
+    display: block;
+    line-height: 30px;
+    color: #ccc;
+    font-size: 12px;
+    font-weight: 100;
+}
+
+.audit-item--id::before {
+    content: "ID: ";
+}
+
+.audit-item:hover {
+    cursor: pointer;
+    background-color: #eee;
+    overflow: hidden;
+}
+
+.audit-panel {
+    position: absolute;
+    top: 80px;
+    left: 400px;
+    width: 700px;
+    height: 400px;
+    padding: 50px;
+    background-color: white;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.4);
+    list-style: none;
+}
+
+.audit-panel li {
+    height: 60px;
+    line-height: 60px;
+}
+
+.audit-panel li input {
+    margin-left: 20px;
+    font-size: 20px;
+    width: 400px;
+    outline: none;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.audit-panel--title {
+    display: inline-block;
+    width: 120px;
+    color: #aaa;
+    font-size: 20px;
+    font-weight: 200;
+}
+
+.audit-reject, .audit-pass, .audit-play{
+    display: inline-block;
+    margin-top: 40px;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 50px;
+    width: 150px;
+    text-align: center;
+    background-color: white;
+    border-radius: 6px;
+    -webkit-transition: all ease-in-out 0.1s;
+}
+
+.audit-play {
+    border: 2px solid skyblue;
+    color: skyblue;
+}
+
+.audit-play:hover {
+    cursor: pointer;
+    color: white;
+    background-color: skyblue;
+}
+
+.audit-reject {
+    border: 2px solid salmon;
+    color: salmon;
+}
+
+.audit-reject:hover {
+    cursor: pointer;
+    color: white;
+    background-color: salmon;
+}
+
+.audit-pass {
+    border: 2px solid limegreen;
+    color: limegreen;
+}
+
+.audit-pass:hover {
+    cursor: pointer;
+    color: white;
+    background-color: limegreen;
+}

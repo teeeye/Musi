@@ -1,0 +1,18 @@
+JDBCUtil
+    将所有字符串从局部变量改为static private的成员变量
+    数据库账号密码改为 musi musi
+
+UploadDao
+    添加安全性检查（检查参数和参数的数据成员是否为null）
+
+Reason
+    添加构造函数
+
+UploadServlet
+    将逻辑转移到UploadService中
+
+FileType
+    转移到 ouc.musi.enumeration 包下面
+
+MusicPath
+    删除该类， 将相关路径信息放入 FileOperator类中

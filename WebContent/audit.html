@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>审核音乐 - 慕斯音乐</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="root">
+            <div class="header">
+                <div class="header-inner  basic-panel">
+                    <div class="header--logo">
+                        <img class="header--logo--img" src="img/logo.png" />
+                    </div>
+                </div>
+            </div>
+            <div class="audit-list-container">
+                <div class="audit-list--header">审核列表</div>
+                <ul class="audit-list">
+                </ul>
+            </div>
+            <ul class="audit-panel">
+                <li><span class="audit-panel--title">音乐ID：</span><input class="audit-id" type="text" disabled="disabled"></li>
+                <li><span class="audit-panel--title">音乐名称：</span><input class="audit-name" type="text"></li>
+                <li><span class="audit-panel--title">演唱者：</span><input class="audit-singer" type="text"></li>
+                <li><span class="audit-panel--title">专辑歌单：</span><input class="audit-playlist" type="text"></li>
+                <li><span class="audit-panel--title">音乐类别：</span><input class="audit-category" type="number"></li>
+                <li><div class="audit-play">播放</div><div class="audit-reject">驳回</div><div class="audit-pass">通过</div></li>
+            </ul>
+        </div>
+        <audio id="audit-audio" style="opacity: 0;" loop="loop"></audio>
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/audit.js"></script>
+    </body>
+</html>

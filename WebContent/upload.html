@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>上传音乐 - 慕斯音乐</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="root">
+            <div class="header">
+                <div class="header-inner  basic-panel">
+                    <div class="header--logo">
+                        <img class="header--logo--img" src="img/logo.png" />
+                    </div>
+                    <div class="header--nav">
+                        <ul>
+                            <li class="header--nav--home header--nav--item header--nav--item__selected">
+                                首页
+                            </li>
+                            <li class="header--nav--discover header--nav--item">
+                                发现
+                            </li>
+                            <li class="header--nav--my-music header--nav--item">
+                                我的音乐
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="header--user">
+                        <span class="header--user--login-register">登陆 | 注册</span>
+                    </div>
+                </div>
+            </div>
+            <div class="main">
+                <div class="upload-container">
+                    <div class="upload-button">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input id="file-selector" type="file" style="opacity: 0" onchange="file_did_select()" accept="audio/mpeg">
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src=js/base64.js></script>
+        <script src="js/upload.js"></script>
+    </body>
+</html>

@@ -1,0 +1,18 @@
+20: upld_srv成员是给自己用的，不对外提供，所以应设置为private
+
+63: 名称简写的规则是去掉元音（a,e,i,o,u）,所以result应该改为rslt,同时result本身就很短，所以也可以不简写直接写result
+66: 输出语句应该放到if语句之外（冗余),因为所有servlet都需要输出统一格式的数据帧（ {success:boolean, reason:string, data:json} ）所以可以将输出的功能集成到一个Util类——ResultWriter中去。所以Result类增加一个data：Object数据成员
+
+    所有service的返回值改成Result类
+
+    FileType是枚举类型，应放入 ouc.musi.enumeration包中
+
+    FileOperator等其他工具类的方法都是公有方法（static方法）,FileOperator.saveFile(3)方法的返回值是boolean,正常情况下返回true，如果Exception被catch了返回false
+
+*   除非万不得已，变量名最好不要写成一个字母，可读性太差    
+
+*   Java的函数名和变量名使用驼峰式写法， MySQL的表名字段名使用下划线分割写法
+
+    音乐被上传后便放到和审核通过的音乐同一个文件夹下面，审核通不通过的区别只是数据库的Music表中有没有记录而已
+
+    主要逻辑放在UploadService之中， DAO和Servlet逻辑较少
