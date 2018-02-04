@@ -7,8 +7,9 @@ public class Music {
 	private String msc_sngr;
 	private String msc_albm;
 	private int msc_hot;
-	private String msc_pth;
-	private String msc_lnth;
+	private String msc_path;
+	private int msc_lnth;
+	private int msc_ctgy;
     
 	public String getMsc_id() {
 		return msc_id;
@@ -40,17 +41,23 @@ public class Music {
 	public void setMsc_hot(int msc_hot) {
 		this.msc_hot = msc_hot;
 	}
-	public String getMsc_pth() {
-		return msc_pth;
+	public String getMsc_path() {
+		return msc_path;
 	}
-	public void setMsc_pth(String msc_pth) {
-		this.msc_pth = msc_pth;
+	public void setMsc_path(String msc_pth) {
+		this.msc_path = msc_pth;
 	}
-	public String getMsc_lnth() {
+	public int getMsc_lnth() {
 		return msc_lnth;
 	}
-	public void setMsc_lnth(String msc_lnth) {
+	public void setMsc_lnth(int msc_lnth) {
 		this.msc_lnth = msc_lnth;
+	}
+	public int getMsc_ctgy() {
+		return msc_ctgy;
+	}
+	public void setMsc_ctgy(int msc_ctgy) {
+		this.msc_ctgy = msc_ctgy;
 	}
     
 }

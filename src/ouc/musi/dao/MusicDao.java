@@ -8,14 +8,14 @@ import ouc.musi.util.JdbcUtil;
 
 public class MusicDao {
 
-	public boolean addmusic(Music m) {
+	public boolean addMusic(Music m) {
 
 		try {
 			String msc_id = m.getMsc_id();
 			String msc_name = m.getMsc_name();
-			String msc_pth = m.getMsc_pth();
+			String msc_pth = m.getMsc_path();
 			String msc_albm = m.getMsc_albm();
-			String msc_lnth = m.getMsc_lnth();
+			int msc_lnth = m.getMsc_lnth();
 			String msc_sngr = m.getMsc_sngr();
 			int msc_hot = m.getMsc_hot();
 
@@ -26,7 +26,7 @@ public class MusicDao {
 			ps.setString(2, msc_name);
 			ps.setString(3, msc_pth);
 			ps.setString(4, msc_albm);
-			ps.setString(5, msc_lnth);
+			ps.setInt(5, msc_lnth);
 			ps.setString(6, msc_sngr);
 			ps.setInt(7, msc_hot);
 

@@ -23,4 +23,13 @@
 		<url-pattern>/audit/query</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>AuditServlet</servlet-name>
+		<servlet-class>AuditServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AuditServlet</servlet-name>
+		<url-pattern>/audit/submit</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

@@ -387,6 +387,7 @@ div {
     padding-top: 10px;
     display: block;
     line-height: 20px;
+    font-size: 20px;
     font-weight: 500;
 }
 
@@ -427,20 +428,18 @@ div {
 
 .audit-panel li input {
     margin-left: 20px;
-    font-size: 20px;
+    font-size: 15px;
     width: 400px;
     outline: none;
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    border-bottom: 1px solid #ccc;
+    border: 1px solid #ccc;
 }
 
 .audit-panel--title {
     display: inline-block;
     width: 120px;
-    color: #aaa;
-    font-size: 20px;
+    padding-left: 50px;
+    color: #777;
+    font-size: 15px;
     font-weight: 200;
 }
 
