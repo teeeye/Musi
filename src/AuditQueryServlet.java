@@ -38,7 +38,7 @@ public class AuditQueryServlet implements Servlet{
 	}
 
 	@Override
-	public void service(ServletRequest req, ServletResponse res) throws ServletException {
+	public void service(ServletRequest req, ServletResponse res) {
 		
 		Result result = _auditQueryService.queryAuditMusic();
 		

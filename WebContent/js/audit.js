@@ -3,6 +3,7 @@ var _is_playing = false;
 $(document).ready(function(){
 	$('.audit-play').click(play);
 	$('.audit-reject').click(reject);
+	$('.audit-pass').click(pass);
 	getAuditList();
 });
 
@@ -52,6 +53,7 @@ function reject() {
 	$.ajax({
 		url: 'audit/submit',
 		data: {
+			msc_id: $(".audit-id").val(),
 			adt_pass: false
 		},
 		success: function(data) {
@@ -65,7 +67,41 @@ function reject() {
 	});
 }
 
+function pass() {
+	
+	var msc_id = $(".audit-id").val();
+	var msc_path = $('.audit-item_'+msc_id).attr('msc_path');
+	var msc_name = $('.audit-name').val() || 'untitled';
+	var msc_sngr = $('.audit-singer').val() || '';
+	var msc_albm = $('.audit-playlist').val() || '';
+	var msc_ctgy = $('.audit-category').val() || 0;
+	
+	$.ajax({
+		url: 'audit/submit',
+		data: {
+			msc_id: msc_id,
+			msc_path: msc_path,
+			msc_name: msc_name,
+			msc_sngr: msc_sngr,
+			msc_albm: msc_albm,
+			msc_ctgy: msc_ctgy,
+			adt_pass: true
+		},
+		type: 'POST',
+		success: function(data) {
+			var json = JSON.parse(data);
+			if (json.success == true) {
+				removeItem();
+			} else {
+				alert(json.reason);
+			}
+		}
+	});
+}
+
 function removeItem() {
 	var id = $('.audit-id').val();
+	$('.audit-id').val('');
+	$('.adudit-name').val('');
 	$('.audit-item_'+id).remove();
 }

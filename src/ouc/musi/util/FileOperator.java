@@ -32,6 +32,18 @@ public class FileOperator {
 		return path.toString();
 	}
 	
+	public static int getMusicLength(String filePath) {
+		StringBuffer path = new StringBuffer();
+		path.append(BASE_PATH + filePath);
+		File file = new File(path.toString());
+		
+		if (!file.exists()) {
+			return 0;
+		}
+		
+		return MP3Parser.getLength(file);
+	}
+	
 	public static boolean saveFile(String path, String fileData) {
 
 		byte[] file_data = Base64Parser.Base64Decode(fileData);
@@ -66,5 +78,4 @@ public class FileOperator {
 			file.delete();
 		}
 	}
-
 }

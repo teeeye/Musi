@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
@@ -7,11 +6,10 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-import com.alibaba.fastjson.JSON;
-
 import ouc.musi.domain.Music;
 import ouc.musi.domain.Result;
 import ouc.musi.service.AuditService;
+import ouc.musi.util.ResultWriter;
 
 public class AuditServlet implements Servlet {
 
@@ -44,33 +42,33 @@ public class AuditServlet implements Servlet {
 	@Override
 	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
 
-		res.setCharacterEncoding("utf-8");
-		PrintWriter out = res.getWriter();
-		Music msc = new Music();
-
-		String pass = req.getParameter("adt_pass");
-		boolean msc_pass = Boolean.valueOf(pass);
-//		String ctgy = req.getParameter("msc_ctgy");
-//		int msc_ctgy = Integer.valueOf(ctgy);
+		Result result = null;
+		
+		boolean adt_pass = Boolean.valueOf(req.getParameter("adt_pass"));
+		
+		Music music = new Music();
+		
+		String ctgy = req.getParameter("msc_ctgy");
+		int msc_ctgy = ctgy == null ? 0 : Integer.parseInt(ctgy);
+		String msc_id = req.getParameter("msc_id");
 		String msc_name = req.getParameter("msc_name");
 		String msc_sngr = req.getParameter("msc_sngr");
 		String msc_albm = req.getParameter("msc_albm");
+		String msc_path = req.getParameter("msc_path");
 
-		msc.setMsc_name(msc_name);
-		msc.setMsc_albm(msc_albm);
-		msc.setMsc_sngr(msc_sngr);
-
-		if (msc_pass) {
-			boolean result = adt_srv.addmusic(msc);
-			Result rult = new Result();
-			if (result) {
-				rult.setSuccess(true);
-				out.write(JSON.toJSONString(rult));
-			} else {
-				rult.setSuccess(false);
-				rult.setReason("add music failed");
-				out.write(JSON.toJSONString(rult));
-			}
+		music.setMsc_id(msc_id);
+		music.setMsc_name(msc_name);
+		music.setMsc_albm(msc_albm);
+		music.setMsc_sngr(msc_sngr);
+		music.setMsc_ctgy(msc_ctgy);
+		music.setMsc_path(msc_path);
+		
+		if (adt_pass) {
+			result = adt_srv.addmusic(music);
+		} else {
+			result = adt_srv.rejectMusic(music);
 		}
+		
+		ResultWriter.writeResult(res, result);
 	}
 }

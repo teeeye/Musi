@@ -3,33 +3,25 @@ package ouc.musi.service;
 import ouc.musi.dao.AuditMusicDao;
 import ouc.musi.dao.MusicDao;
 import ouc.musi.domain.Music;
-import ouc.musi.util.MP3Parser;
-import ouc.musi.util.UUIDGenerator;
+import ouc.musi.domain.Result;
+import ouc.musi.util.FileOperator;
 
 public class AuditService {
 	
 	private MusicDao msc_dao = new MusicDao();
 	private AuditMusicDao adt_msc_dao = new AuditMusicDao();
 
-	public boolean addmusic(Music m){
-		
-		Music msc = new Music();
-		String uuid = UUIDGenerator.getUUID();
-		msc.setMsc_id(uuid);
-		msc.setMsc_albm(m.getMsc_albm());
-		msc.setMsc_name(m.getMsc_name());
-		msc.setMsc_sngr(m.getMsc_sngr());
-		
-		String fileLocation = adt_msc_dao.queryMusicPath(m.getMsc_name());
-		msc.setMsc_lnth(MP3Parser.parse(fileLocation));
-		StringBuffer path = new StringBuffer("MUSICPATH");
-		path.append("uuid");
-		path.append(".MP3");
-		
-		msc.setMsc_pth(String.valueOf(path));
-		msc.setMsc_hot(0);
-		
-		return msc_dao.addmusic(msc);
-		
+	public Result addmusic(Music music){
+		int msc_lnth = FileOperator.getMusicLength(music.getMsc_path());
+		music.setMsc_lnth(msc_lnth);
+		boolean success = adt_msc_dao.deleteAuditMusic(music.getMsc_id()) && msc_dao.addMusic(music);
+		String reason = success ? "OK" : "server error";
+		return new Result(success, reason, null);		
+	}
+	
+	public Result rejectMusic(Music music) {
+		boolean success = adt_msc_dao.deleteAuditMusic(music.getMsc_id());
+		String reason = success ? "OK" : "server error";
+		return new Result(success, reason, null);
 	}
 }
