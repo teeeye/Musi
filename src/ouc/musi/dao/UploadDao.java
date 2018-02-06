@@ -15,11 +15,11 @@ public class UploadDao {
 				System.out.println("invalid arguments Audit_Music in uploadMusic");
 				return false;
 			}
-			
+
 			String msc_id = m.getMsc_id();
 			String msc_name = m.getMsc_name();
 			String msc_pth = m.getMsc_path();
-			
+
 			if (msc_id == null || msc_name == null || msc_pth == null) {
 				System.out.println("invalid arguments Audit_Music.property in uploadMusic");
 				return false;
@@ -33,13 +33,13 @@ public class UploadDao {
 			ps.setString(3, msc_pth);
 
 			ps.execute();
-			
 		} catch (SQLException e) {
 			System.out.println("Database error in uploadMusic");
 			e.printStackTrace();
 			return false;
 		}
 		return true;
+
 	}
 
 }

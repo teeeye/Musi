@@ -16,6 +16,14 @@ public class Result {
 		this.data = data;
 	}
 	
+	public Object getData() {
+		return data;
+	}
+
+	public void setData(Object data) {
+		this.data = data;
+	}
+
 	public boolean isSuccess() {
 		return success;
 	}
@@ -27,12 +35,6 @@ public class Result {
 	}
 	public void setReason(String reason) {
 		this.reason = reason;
-	}
-	public Object getData() {
-		return data;
-	}
-	public void setData(Object data) {
-		this.data = data;
 	}
 
 }

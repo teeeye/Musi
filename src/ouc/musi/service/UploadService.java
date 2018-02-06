@@ -1,9 +1,10 @@
 package ouc.musi.service;
 
+import com.musi.enumeration.FileType;
+
 import ouc.musi.dao.UploadDao;
 import ouc.musi.domain.Audit_Music;
 import ouc.musi.domain.Result;
-import ouc.musi.enumeration.FileType;
 import ouc.musi.util.FileOperator;
 import ouc.musi.util.UUIDGenerator;
 

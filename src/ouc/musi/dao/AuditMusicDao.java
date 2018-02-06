@@ -33,11 +33,12 @@ public class AuditMusicDao {
 			return null;
 		}
 	}
-	
-	
-	public String queryMusicPath(String name){
-		try {	
+
+	public String queryMusicPath(String name) {
+		try {
+
 			String sql = "select msc_pth from audit_music where msc_name = ?";
+
 			PreparedStatement ps = JdbcUtil.conn.prepareStatement(sql);
 			ps.setString(1, name);
 			ResultSet rs = null;
@@ -54,9 +55,9 @@ public class AuditMusicDao {
 			return null;
 		}
 	}
-	
+
 	public boolean deleteAuditMusic(String msc_id) {
-		try {	
+		try {
 			String sql = "delete from audit_music where msc_id = ?";
 			PreparedStatement ps = JdbcUtil.conn.prepareStatement(sql);
 			ps.setString(1, msc_id);

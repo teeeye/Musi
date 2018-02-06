@@ -4,13 +4,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class JdbcUtil {
 
+public class JdbcUtil {
+	
 	private static String DRIVER_NAME = "com.mysql.jdbc.Driver";
 	private static String DB_URL = "jdbc:mysql://localhost/musi";
 	private static String DB_USER_NAME = "musi";
 	private static String DB_USER_PASSWORD = "musi";
-	
+
 	public static Connection conn;
 
 	static {

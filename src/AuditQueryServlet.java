@@ -1,3 +1,4 @@
+import java.io.IOException;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
@@ -9,14 +10,14 @@ import ouc.musi.domain.Result;
 import ouc.musi.service.AuditQueryService;
 import ouc.musi.util.ResultWriter;
 
-public class AuditQueryServlet implements Servlet{
-	
+public class AuditQueryServlet implements Servlet {
+
 	private AuditQueryService _auditQueryService = new AuditQueryService();
 
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -34,15 +35,16 @@ public class AuditQueryServlet implements Servlet{
 	@Override
 	public void init(ServletConfig arg0) throws ServletException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void service(ServletRequest req, ServletResponse res) {
-		
+	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
 		Result result = _auditQueryService.queryAuditMusic();
-		
+
 		ResultWriter.writeResult(res, result);
-		
+
 	}
 }

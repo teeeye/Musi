@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>Musi</display-name>
-  	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-    </welcome-file-list>
-    
-    <servlet>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
 		<servlet-name>UploadServlet</servlet-name>
 		<servlet-class>UploadServlet</servlet-class>
 	</servlet>
@@ -14,7 +18,16 @@
 		<url-pattern>/upload</url-pattern>
 	</servlet-mapping>
 	
-	<servlet>
+	 <servlet>
+		<servlet-name>AuditServlet</servlet-name>
+		<servlet-class>AuditServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AuditServlet</servlet-name>
+		<url-pattern>/audit/submit</url-pattern>
+	</servlet-mapping>
+	
+	 <servlet>
 		<servlet-name>AuditQueryServlet</servlet-name>
 		<servlet-class>AuditQueryServlet</servlet-class>
 	</servlet>
@@ -23,13 +36,23 @@
 		<url-pattern>/audit/query</url-pattern>
 	</servlet-mapping>
 	
-	<servlet>
-		<servlet-name>AuditServlet</servlet-name>
-		<servlet-class>AuditServlet</servlet-class>
+	 <servlet>
+		<servlet-name>MusicLikeServlet</servlet-name>
+		<servlet-class>MusicLikeServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>AuditServlet</servlet-name>
-		<url-pattern>/audit/submit</url-pattern>
+		<servlet-name>MusicLikeServlet</servlet-name>
+		<url-pattern>/like</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>KeyWordQueryMusicServlet</servlet-name>
+		<servlet-class>KeyWordQueryMusicServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>KeyWordQueryMusicServlet</servlet-name>
+		<url-pattern>/music/query/keyword </url-pattern>
+	</servlet-mapping>
+	
 	
 </web-app>
