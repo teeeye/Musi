@@ -98,4 +98,14 @@
 		<servlet-name>SingerQueryMusicServlet</servlet-name>
 		<url-pattern>/music/query/singer</url-pattern>
 	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>EditPlaylistServlet</servlet-name>
+		<servlet-class>EditPlaylistServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EditPlaylistServlet</servlet-name>
+		<url-pattern>/playlist/edit</url-pattern>
+	</servlet-mapping>
 </web-app>

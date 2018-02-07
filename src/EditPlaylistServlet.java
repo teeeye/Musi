@@ -8,13 +8,12 @@ import javax.servlet.ServletResponse;
 
 import ouc.musi.domain.Playlist;
 import ouc.musi.domain.Result;
-import ouc.musi.service.NewPlaylistService;
+import ouc.musi.service.EditPlaylistService;
 import ouc.musi.util.ResultWriter;
 
-public class NewPlaylistServlet implements Servlet {
-	
-	private NewPlaylistService _newPlaylistService = new NewPlaylistService();
+public class EditPlaylistServlet implements Servlet{
 
+	private EditPlaylistService _editPlaylistService = new EditPlaylistService();
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
@@ -44,13 +43,21 @@ public class NewPlaylistServlet implements Servlet {
 		// TODO Auto-generated method stub
 		
 		Playlist plylst = new Playlist();
-		plylst.setPlylst_name(req.getParameter("plylst_name"));
-		plylst.setUsr_id(req.getParameter("usr_id"));
+		String plylst_name = req.getParameter("plylst_name");
+		String plylst_cvr = req.getParameter("plylst_cover");
 		
-		Result result = _newPlaylistService.newPlaylist(plylst);
+		plylst.setPlylst_id(req.getParameter("pylst_id"));
+		plylst.setPlylst_name(plylst_name);
+		plylst.setPlylst_cvr(plylst_cvr);
+		
+		if(plylst_name == null && plylst_cvr == null){
+			System.out.println("invalid arguments in Edit Playlist");
+			return ;
+		}
+		
+		Result result = _editPlaylistService.editPlaylist(plylst);
+
 		ResultWriter.writeResult(res, result);
-		
-		
 	}
 
 }
