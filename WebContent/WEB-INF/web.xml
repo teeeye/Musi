@@ -54,5 +54,48 @@
 		<url-pattern>/music/query/keyword </url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>AddToPlaylistServlet</servlet-name>
+		<servlet-class>AddToPlaylistServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddToPlaylistServlet</servlet-name>
+		<url-pattern>/playlist/add</url-pattern>
+	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>RemoveFromPlaylistServlet</servlet-name>
+		<servlet-class>RemoveFromPlaylistServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RemoveFromPlaylistServlet</servlet-name>
+		<url-pattern>/playlist/remove</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AlbumQueryMusicServlet</servlet-name>
+		<servlet-class>AlbumQueryMusicServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AlbumQueryMusicServlet</servlet-name>
+		<url-pattern>/music/query/album</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>NewPlaylistServlet</servlet-name>
+		<servlet-class>NewPlaylistServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NewPlaylistServlet</servlet-name>
+		<url-pattern>/playlist/add</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SingerQueryMusicServlet</servlet-name>
+		<servlet-class>SingerQueryMusicServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SingerQueryMusicServlet</servlet-name>
+		<url-pattern>/music/query/singer</url-pattern>
+	</servlet-mapping>
 </web-app>

@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import ouc.musi.domain.Album;
 import ouc.musi.domain.Music;
 import ouc.musi.domain.Music_Like;
 import ouc.musi.domain.Singer;
@@ -220,4 +221,54 @@ public class MusicDao {
 		return result;
 
 	}
+	
+	@SuppressWarnings("null")
+	public Music[] albumQuery(Album albm, int page) {
+		int num = (page + 1) * 20;
+		Music music = new Music();
+		Music[] music_array = null;
+		Music[] result = null;
+		StringBuffer sql = new StringBuffer("select top ");
+		sql.append(num);
+		sql.append(" music.* from ");
+		PreparedStatement ps = null;
+		if (albm.getAlbm_id() != null) {
+			sql.append("music m, album a, playlist_music plylst_msc where a.albm_id = plylst_msc.plylst_id and plylst_msc.msc_id = m.msc_id and a.albm_id = ?");
+		} else {
+			sql.append("music m, album a where m.msc_albm = a.albm_name and a.albm_name = ?");
+		}
+		try {
+			ps.setString(1, (albm.getAlbm_id() != null) ? albm.getAlbm_id() : albm.getAlbm_name());
+			ps = JdbcUtil.conn.prepareStatement(String.valueOf(sql));
+			ResultSet rs = null;
+			rs = ps.executeQuery();
+
+			for (int i = 0; i < num; i++) {
+				while (rs.next()) {
+					music.setMsc_id(rs.getString("msc_id"));
+					music.setMsc_albm(rs.getString("msc_albm"));
+					music.setMsc_ctgy(rs.getInt("msc_ctgy"));
+					music.setMsc_hot(rs.getInt("msc_hot"));
+					music.setMsc_lnth(rs.getInt("msc_lnth"));
+					music.setMsc_name(rs.getString("msc_name"));
+					music.setMsc_path(rs.getString("msc_pth"));
+					music.setMsc_sngr(rs.getString("msc_sngr"));
+					music_array[i] = music;
+				}
+			}
+			for (int i = 0; i < 20; i++)
+				for (int j = page * 20; j < (page + 1) * 20; j++) {
+					result[i] = music_array[j];
+				}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		return result;
+
+	}
+	
+	
 }
