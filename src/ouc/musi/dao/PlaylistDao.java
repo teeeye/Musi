@@ -119,7 +119,7 @@ public class PlaylistDao {
 		return true;
 	}
 
-	public Playlist queryPlaylist(String plylst_id) {
+	public Playlist queryWithPlaylistId(String plylst_id) {
 
 		Playlist plylst = new Playlist();
 
@@ -141,7 +141,36 @@ public class PlaylistDao {
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("failed in querying playlist");
+			System.out.println("failed in querying playlist with playlist id");
+			e.printStackTrace();
+			return null;
+		}
+		return plylst;
+	}
+	
+	public Playlist queryWithUserId(String usr_id) {
+
+		Playlist plylst = new Playlist();
+
+		try {
+
+			String sql = "select * from playlist where usr_id = ?";
+
+			PreparedStatement ps = JdbcUtil.conn.prepareStatement(sql);
+			ps.setString(1, usr_id);
+
+			ResultSet rs = null;
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				plylst.setPlylst_cvr(rs.getString("plylst_cvr"));
+				plylst.setPlylst_hot(rs.getInt("plylst_id"));
+				plylst.setPlylst_name(rs.getString("plylst_name"));
+				plylst.setPlylst_id(rs.getString("plylst_id"));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("failed in querying playlist with user id");
 			e.printStackTrace();
 			return null;
 		}

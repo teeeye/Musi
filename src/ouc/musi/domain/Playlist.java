@@ -7,6 +7,7 @@ public class Playlist {
 	private String plylst_name;
 	private String plylst_cvr;
 	private int plylst_hot;
+	
 	public String getPlylst_id() {
 		return plylst_id;
 	}

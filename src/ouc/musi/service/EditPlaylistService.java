@@ -14,7 +14,7 @@ public class EditPlaylistService {
 	public Result editPlaylist(Playlist plylst) {
 		boolean success = false;
 		if (plylst.getPlylst_cvr() != null) {
-			Playlist p = plylst_dao.queryPlaylist(plylst.getPlylst_id());
+			Playlist p = plylst_dao.queryWithPlaylistId(plylst.getPlylst_id());
 			String p_name = p.getPlylst_name();
 			String filePath = FileOperator.getFilePath(p_name, FileType.PNG);
 			success = FileOperator.saveFile(filePath, plylst.getPlylst_cvr());

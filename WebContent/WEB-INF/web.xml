@@ -99,7 +99,6 @@
 		<url-pattern>/music/query/singer</url-pattern>
 	</servlet-mapping>
 	
-	
 	<servlet>
 		<servlet-name>EditPlaylistServlet</servlet-name>
 		<servlet-class>EditPlaylistServlet</servlet-class>
@@ -107,5 +106,23 @@
 	<servlet-mapping>
 		<servlet-name>EditPlaylistServlet</servlet-name>
 		<url-pattern>/playlist/edit</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>	RegisterServlet</servlet-name>
+		<servlet-class>RegisterServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RegisterServlet</servlet-name>
+		<url-pattern>/register</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>LoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoginServlet</servlet-name>
+		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
 </web-app>
