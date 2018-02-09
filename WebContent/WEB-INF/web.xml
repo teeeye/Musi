@@ -152,4 +152,40 @@
 		<servlet-name>NewHitListServlet</servlet-name>
 		<url-pattern>/music/new</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>RemovePlaylistServlet</servlet-name>
+		<servlet-class>RemovePlaylistServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RemovePlaylistServlet</servlet-name>
+		<url-pattern>/playlist/delete </url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SharedPlaylistServlet</servlet-name>
+		<servlet-class>SharedPlaylistServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SharedPlaylistServlet</servlet-name>
+		<url-pattern>/playlist/share</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>QueryPlaylistServlet</servlet-name>
+		<servlet-class>QueryPlaylistServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>QueryPlaylistServlet</servlet-name>
+		<url-pattern>/playlist/query</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CollectPlaylistServlet</servlet-name>
+		<servlet-class>CollectPlaylistServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CollectPlaylistServlet</servlet-name>
+		<url-pattern>/playlist/favorite</url-pattern>
+	</servlet-mapping>
 </web-app>
