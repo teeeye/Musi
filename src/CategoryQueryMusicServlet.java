@@ -6,15 +6,13 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-import ouc.musi.domain.Playlist;
 import ouc.musi.domain.Result;
-import ouc.musi.service.NewPlaylistService;
+import ouc.musi.service.CategoryQueryMusicService;
 import ouc.musi.util.ResultWriter;
 
-public class NewPlaylistServlet implements Servlet {
-	
-	private NewPlaylistService _newPlaylistService = new NewPlaylistService();
+public class CategoryQueryMusicServlet implements Servlet {
 
+	private CategoryQueryMusicService _categoryQueryMusicService = new CategoryQueryMusicService();
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
@@ -43,12 +41,17 @@ public class NewPlaylistServlet implements Servlet {
 	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		Playlist plylst = new Playlist();
-		plylst.setPlylst_name(req.getParameter("plylst_name"));
-		plylst.setUsr_id(req.getParameter("usr_id"));
+		int ctgy_id = Integer.parseInt(req.getParameter("ctgy_id"));
+		int page = Integer.parseInt(req.getParameter("page"));
 		
-		Result result = _newPlaylistService.newPlaylist(plylst);
+		if(page < 0){
+			System.out.println("invalid page");
+			return ;
+		}
+		
+		Result result = _categoryQueryMusicService.categoryQuery(ctgy_id, page);
+		
 		ResultWriter.writeResult(res, result);
-		
 	}
+
 }

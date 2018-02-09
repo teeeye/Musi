@@ -6,15 +6,11 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-import ouc.musi.domain.Playlist;
-import ouc.musi.domain.Result;
-import ouc.musi.service.NewPlaylistService;
-import ouc.musi.util.ResultWriter;
+import ouc.musi.service.DownloadService;
 
-public class NewPlaylistServlet implements Servlet {
-	
-	private NewPlaylistService _newPlaylistService = new NewPlaylistService();
+public class DownloadServlet implements Servlet{
 
+	private DownloadService _downloadService = new DownloadService();
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
@@ -42,13 +38,10 @@ public class NewPlaylistServlet implements Servlet {
 	@Override
 	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String msc_id = req.getParameter("msc_id");
 		
-		Playlist plylst = new Playlist();
-		plylst.setPlylst_name(req.getParameter("plylst_name"));
-		plylst.setUsr_id(req.getParameter("usr_id"));
-		
-		Result result = _newPlaylistService.newPlaylist(plylst);
-		ResultWriter.writeResult(res, result);
+		_downloadService.playMusic(msc_id);
 		
 	}
+
 }

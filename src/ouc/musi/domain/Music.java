@@ -10,7 +10,6 @@ public class Music {
 	private String msc_path;
 	private int msc_lnth;
 	private int msc_ctgy;
-	
 	public String getMsc_id() {
 		return msc_id;
 	}
@@ -59,7 +58,7 @@ public class Music {
 	public void setMsc_ctgy(int msc_ctgy) {
 		this.msc_ctgy = msc_ctgy;
 	}
-    
-
+	
+	
     
 }
