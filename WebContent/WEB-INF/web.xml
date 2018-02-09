@@ -144,4 +144,12 @@
 		<url-pattern>/music/query/category</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>NewHitListServlet</servlet-name>
+		<servlet-class>NewHitListServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NewHitListServlet</servlet-name>
+		<url-pattern>/music/new</url-pattern>
+	</servlet-mapping>
 </web-app>
