@@ -60,11 +60,11 @@ public class UserDao {
 			User u = new User();
 			ResultSet rs = ps.executeQuery();
 
-			if (rs.next()) {
+			while (rs.next()) {
 				user.setUsr_id(rs.getString("usr_id"));
 				user.setUsr_avtr(rs.getString("usr_avtr"));
 				user.setUsr_name(rs.getString("usr_name"));
-				
+
 				u = user;
 			}
 			if (u.getUsr_id() != null && u.getUsr_name() != null && u.getUsr_avtr() != null)
@@ -76,6 +76,57 @@ public class UserDao {
 			e.printStackTrace();
 			return null;
 		}
+	}
 
+	public boolean editUserInfo(User u) {
+		try {
+			String usr_name = u.getUsr_name();
+			UserDao usr_dao = new UserDao();
+			boolean is_unique = usr_dao.queryUserName(usr_name);
+			String first = usr_name.substring(0, 1);
+
+			Pattern pattern = Pattern.compile("[0-9]*");
+			boolean is_number = pattern.matcher(first).matches();
+
+			if (!is_unique || is_number || usr_name.length() <= 0 || usr_name.length() >= 20) {
+				System.out.println("invalid user name");
+				return false;
+			}
+
+			String sql = "update user set usr_name = ? where usr_id = ?";
+			PreparedStatement ps = JdbcUtil.conn.prepareStatement(sql);
+			ps.setString(1, u.getUsr_name());
+			ps.setString(2, u.getUsr_id());
+			ps.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("failed in editing user information");
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	public boolean queryUserName(String usr_name) {
+		try {
+			User u = new User();
+			String sql = "select * from user where usr_name = ?";
+			PreparedStatement ps = JdbcUtil.conn.prepareStatement(sql);
+			ps.setString(1, usr_name);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				u.setUsr_id(rs.getString("usr_id"));
+			}
+			if (u.getUsr_id().length() == 32) {
+				return false;
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("The user name is not unique");
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 }

@@ -188,4 +188,14 @@
 		<servlet-name>CollectPlaylistServlet</servlet-name>
 		<url-pattern>/playlist/favorite</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>EditUserInfoServlet</servlet-name>
+		<servlet-class>EditUserInfoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EditUserInfoServlet</servlet-name>
+		<url-pattern>/user/edit/info</url-pattern>
+	</servlet-mapping>
+	
 </web-app>
