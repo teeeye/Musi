@@ -198,4 +198,12 @@
 		<url-pattern>/user/edit/info</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>AddCommentServlet</servlet-name>
+		<servlet-class>AddCommentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddCommentServlet</servlet-name>
+		<url-pattern>/comment/add</url-pattern>
+	</servlet-mapping>
 </web-app>

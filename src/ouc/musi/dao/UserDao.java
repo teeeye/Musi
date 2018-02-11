@@ -106,6 +106,24 @@ public class UserDao {
 		}
 		return true;
 	}
+	
+	public boolean editUserAvatar(User u) {
+		try {
+		
+			String sql = "update user set usr_avtr = ? where usr_id = ?";
+			PreparedStatement ps = JdbcUtil.conn.prepareStatement(sql);
+			ps.setString(1, u.getUsr_avtr());
+			ps.setString(2, u.getUsr_id());
+			ps.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("failed in editing user avatar");
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
 
 	public boolean queryUserName(String usr_name) {
 		try {
@@ -129,4 +147,5 @@ public class UserDao {
 		}
 		return true;
 	}
+
 }

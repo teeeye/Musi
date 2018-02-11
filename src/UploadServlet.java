@@ -13,7 +13,7 @@ import ouc.musi.util.ResultWriter;
 
 public class UploadServlet implements Servlet {
 
-	public UploadService upld_srv = new UploadService();
+	private UploadService _uploadService = new UploadService();
 
 	@Override
 	public void destroy() {
@@ -58,7 +58,7 @@ public class UploadServlet implements Servlet {
 		music.setMsc_name(musicName);
 
 		// 将base64文件存储到本地文件系统
-		Result result = upld_srv.uploadMusic(music, base64Data);
+		Result result = _uploadService.uploadMusic(music, base64Data);
 
 		// 返回操作结果
 		ResultWriter.writeResult(res, result);
