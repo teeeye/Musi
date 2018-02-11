@@ -1,6 +1,6 @@
 package ouc.musi.service;
 
-import com.musi.enumeration.FileType;
+import ouc.musi.enumeration.FileType;
 
 import ouc.musi.dao.PlaylistDao;
 import ouc.musi.domain.Playlist;
