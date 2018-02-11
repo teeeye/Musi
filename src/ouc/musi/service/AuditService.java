@@ -4,6 +4,7 @@ import ouc.musi.dao.AuditMusicDao;
 import ouc.musi.dao.MusicDao;
 import ouc.musi.domain.Music;
 import ouc.musi.domain.Result;
+import ouc.musi.enumeration.FileType;
 import ouc.musi.util.FileOperator;
 
 public class AuditService {
@@ -20,6 +21,8 @@ public class AuditService {
 	}
 	
 	public Result rejectMusic(Music music) {
+		String msc_path = music.getMsc_path();
+		FileOperator.deleteFile(msc_path, FileType.MP3);
 		boolean success = adt_msc_dao.deleteAuditMusic(music.getMsc_id());
 		String reason = success ? "OK" : "server error";
 		return new Result(success, reason, null);

@@ -7,6 +7,27 @@
     user-select:none;
 }
 
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #ccc;
+    font-size: 15px;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #ccc;
+    font-size: 15px;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #ccc;
+    font-size: 15px;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #ccc;
+    font-size: 15px;
+}
+
+ul {
+	list-style: none;
+}
+
 body {
     background-color: rgb(246,246,246);
 }
@@ -26,6 +47,18 @@ div {
 .basic-panel {
     background-color: white;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.background-ef {
+	background-color: #efefef;
+}
+
+.background-f7 {
+	background-color: #f7f7f7;
+}
+
+.background-white {
+	background-color: white;
 }
 
 .header {
@@ -69,10 +102,12 @@ div {
     float: left;
     padding-left: 20px;
     color: darkgray;
+    -webkit-transition: color ease-in-out 0.2s;
 }
 
 .header--nav--item:hover {
     cursor: pointer;
+    color: black;
 }
 
 .header--nav--item__selected {
@@ -108,7 +143,7 @@ div {
 }
 
 .main--banner {
-    height: 400px;
+    height: 400px;	
     position: relative;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
@@ -180,6 +215,48 @@ div {
     margin-top: 20px;
 }
 
+.main--billboard-contaienr {
+	height: 500px;
+}
+
+.main--billboard--new, .main--billboard--hot {
+	width: 400px;
+	padding: 0 50px;
+	float: left;
+}
+
+.main--billboard--title {
+	height: 35px;
+	font-size: 1.2em;
+	font-weight: 500;
+	color: #777;
+	width:400px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #eee;
+}
+
+.main--billboard--item--rank {
+	display: inline-block;
+	width: 50px;
+	color: #777;
+}
+
+.main--billboard--item--rank::after {
+	content: ".";
+}
+
+.main--billboard--item {
+	height: 40px;
+	width: 400px;
+	line-height: 40px;
+}
+
+.main--billboard--item:hover {
+	cursor: pointer;
+	text-decoration: underline;
+	background-color: #eee;
+}
+
 .main--music-list {
     list-style: none;
     width: 900px;
@@ -188,24 +265,29 @@ div {
 
 .main--music {
     float: left;
-    width: 225px;
-    height: 200px;
+    width: 158px;
+    height: 158px;
+    margin: 0 32.5px 40px;
+    border: 1px solid rgba(0,0,0,0);
+    -webkit-transition: box-shadow ease-in-out 0.1s;
 }
 
 .main--music:hover {
     cursor: pointer;
+    border: 1px solid lightgray;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.25);
 }
 
 .main--music-cover {
     width: 120px;
     height: 120px;
-    margin-left: 52.5px;
+    margin: 10px 20px 0;
 }
 
 .main--music-title {
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #eee;
     width: 120px;
-    margin-left: 52.5px;
+    margin: 0 20px;
     line-height: 25px;
     text-align: center;
     color: dimgray;
@@ -251,6 +333,14 @@ div {
     width: 50px;
     text-align: center;
     -webkit-transition: all 0.1s;
+}
+
+.play-button__play::before {
+	content: "▶";
+}
+
+.play-button__pause::before {
+	content: "◼︎";
 }
 
 .play-button:hover {
@@ -487,4 +577,387 @@ div {
     cursor: pointer;
     color: white;
     background-color: limegreen;
+}
+
+.search {
+    margin-top: 92px;
+}
+
+.search-view {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 5px 0;
+}
+
+.search-header {
+	border-bottom: 1px solid #ccc;
+	color: #aaa;
+}
+
+.search-result-container {
+	position: relative;
+	height: 40px;
+}
+
+.search-result {
+	position: absolute;
+	color: #333;
+	width: 996px;
+	font-size: 0.85em;
+	border: 2px solid rgba(0,0,0,0);
+}
+
+.search-result:hover {
+	border: 2px solid #333;
+	z-index: 200;
+	cursor: pointer;
+	box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+}
+
+.search-header span, .search-result span {
+	display: inline-block;
+	float: left;
+	height: 40px;
+	line-height: 40px;
+}
+
+.search-header--name, .search-result--name {
+	padding-left: 15px;
+	width: 370px;
+}
+
+.search-header--singer, .search-result--singer {
+	padding-left: 15px;
+	width: 170px;
+}
+
+.search-header--album, .search-result--album {
+	padding: 0 15px;
+	width: 170px;
+}
+
+.search-header--length, .search-result--length {
+	padding: 0 15px;
+	width: 70px;
+}
+
+.search-header--hot, .search-result--hot {
+	padding-left: 20px;
+	width: 80px;
+}
+
+.search--page {
+	padding-top: 20px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+}
+
+.search--page--last, .search--page--next {
+	width: 500px;
+	float: left;
+}
+
+.search-bar {
+	width: 1000px;
+	height: 40px;
+	margin: 0 auto 20px;
+}
+
+.search-bar--option-panel {
+	height: 40px;
+	float: left;
+}
+
+.search-bar--option {
+	float: left;
+	width: 60px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 12px;
+}
+
+.search-bar--option:hover {
+	color: white;
+	background-color: #444;
+	cursor: pointer;
+}
+
+.search-bar--option__selected {
+	color: white;
+	background-color: #444;
+}
+
+.search-bar--field {
+	float: left;
+	height: 40px;
+	width: 700px;
+	padding-left: 19px;
+	border-top: none;
+	border-right: none;
+	border-bottom: none;
+	border-left: 1px solid #eee;	
+	outline: none;
+	font-size: 18px;
+	line-height: 40px;
+}
+
+.search-bar--button {
+	float: right;
+	width: 100px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	color: white;
+	background-color: #555;
+	-webkit-transition: all ease-in-out 0.1s;
+}
+
+.search-bar--button:hover {
+	cursor: pointer;
+	background-color: #444;
+}
+
+.login {
+	position: fixed;
+	z-index: 700;
+	top: 0px;
+	width: 100%;
+}
+
+.login-view {
+	width: 400px;
+	margin:60px auto;
+	height: 400px;
+}
+
+.login-register-option-container {
+	padding: 20px 20px 5px;
+	font-size: 1.2em;
+	font-weight: 500;
+	color: #ccc;
+	border-bottom: 2px solid #eee;
+}
+
+.login-register-option__selected {
+	color: #333;
+}
+
+.login-option, .register-option {
+	float: left;
+	width: 179px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+}
+
+.login-option:hover, .register-option:hover {
+	color: #333;
+	cursor: pointer;
+}
+
+.login-option {
+	border-left: 1px solid #eee;
+}
+
+.register-option {
+	border-right: 1px solid #eee;
+}
+
+.login-phone-number, .login-password {
+	display: block;
+	height: 40px;
+	font-size: 20px;
+	padding-left: 10px;
+	outline: none;
+	border-radius: 5px;
+	border: solid 1px #aaa;
+	width: 290px;
+	margin: 40px auto;
+}
+
+.login-register-button {
+	height: 40px;
+	line-height: 40px;
+	border-radius: 5px;
+	width: 300px;
+	margin: 40px auto;
+	text-align: center;
+	background-color: #333;
+	border: 2px solid #000;
+	box-shadow: 0 2px 3px rgba(0,0,0,0.4);
+	color: white;
+}
+
+.login-register-button__register::before {
+	content: "注册";
+}
+
+.login-register-button__login::before {
+	content: "登陆";
+}
+
+.login-register-button:hover {
+	cursor: pointer;
+	background-color: #222;
+}
+
+.login-cancel {
+	height: 40px;
+	line-heihgt: 40px;
+	padding-left: 50px;
+	color: #aaa;
+}
+
+.login-cancel:hover {
+	color: #777;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.black-background {
+	position:fixed;
+	top: 0;
+	z-index: 650;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+}
+
+.user {
+    margin-top: 92px;
+}
+
+.user-view {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 5px 0;
+}
+
+.user-info {
+	padding: 50px;
+	width: 900px;
+}
+
+.user-avatar-container {
+	width: 128px;
+	height: 128px;
+	border-radius: 64px;
+	border: 1px solid #ccc;
+	float: left;
+	margin: 0 48px;
+	overflow: hidden;
+	position: relative;
+}
+
+
+.user-avatar {
+	width: 128px;
+	height: 128px;
+
+}
+
+.user-avatar-container:hover {
+	border: 1px solid black;
+	cursor: pointer;	
+}
+
+.user-avatar-edit {
+	position: absolute;
+	top: 128px;
+	height: 20px;
+	width: 128px;
+	line-height: 20px;
+	text-align: center;
+	font-size: 12px;
+	color: white;
+	background-color: rgba(0,0,0,0.8);
+	-webkit-transition: all ease-in-out 0.2s;
+}
+
+.user-avatar-edit__shown {
+	top: 108px;
+}
+
+.user-info-list {
+	padding: 40px 0;
+	height: 48px;
+	float:left;
+	width:600px;
+	font-size: 1.1em;
+}
+
+.user-info--user-name {
+	border-bottom: 1px solid #eee;
+}
+
+.user-name {
+	width: 200px;
+	margin-right: 200px;
+	height: 30px;
+	border: 1px solid rgba(0,0,0,0);
+	outline: none;
+}
+
+.user-name--label {
+	display: inline-block;
+	width: 100px;
+	color: #ccc;
+}
+
+.user-name--edit {
+	display: inline-block;
+	width: 80px;
+	text-align: right;
+	font-size: 0.8em;
+	color: #777;
+}
+
+.user-name--edit:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.user-playlist--panel {
+	color: #333;
+	width: 900px;
+	margin: 0 auto;
+}
+
+.user-playlist--action {
+	float:right;
+	padding: 0 10px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 12px;
+	color: #666;
+}
+
+.user-playlist--action:hover {
+	cursor: pointer;
+	color: black;
+	text-decoration: underline;
+}
+
+.user-playlist {
+	padding: 20px 50px;
+}
+
+.user-playlist--item {
+	height: 25px;
+	line-height: 25px;
+	width: 900px;
+	border-bottom: 1px solid #eee;
+}
+
+.user-playlist--item--title {
+	height: 23px;
+	border: 1px solid rgba(0,0,0,0);
+	outline: none;
+	font-size: 15px;
+}
+
+.user-playlist--item--title:hover {
+	cursor: pointer;
+	text-decoration: underline;
 }

@@ -50,10 +50,12 @@ function play() {
 }
 
 function reject() {
+	var msc_path = $('.audit-item_'+msc_id).attr('msc_path');
 	$.ajax({
 		url: 'audit/submit',
 		data: {
 			msc_id: $(".audit-id").val(),
+			msc_path: msc_path,
 			adt_pass: false
 		},
 		success: function(data) {
