@@ -199,11 +199,56 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>EditUserAvatarServlet</servlet-name>
+		<servlet-class>EditUserAvatarServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EditUserAvatarServlet</servlet-name>
+		<url-pattern>/user/edit/avatar</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>AddCommentServlet</servlet-name>
 		<servlet-class>AddCommentServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>AddCommentServlet</servlet-name>
 		<url-pattern>/comment/add</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>RemoveCommentServlet</servlet-name>
+		<servlet-class>RemoveCommentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RemoveCommentServlet</servlet-name>
+		<url-pattern>/comment/delete</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>QueryCommentServlet</servlet-name>
+		<servlet-class>QueryCommentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>QueryCommentServlet</servlet-name>
+		<url-pattern>/comment/query</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CommentLikeServlet</servlet-name>
+		<servlet-class>CommentLikeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CommentLikeServlet</servlet-name>
+		<url-pattern>/comment/like</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CommentReplyServlet</servlet-name>
+		<servlet-class>CommentReplyServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CommentReplyServlet</servlet-name>
+		<url-pattern>/comment/reply</url-pattern>
 	</servlet-mapping>
 </web-app>

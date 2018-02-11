@@ -106,10 +106,10 @@ public class UserDao {
 		}
 		return true;
 	}
-	
+
 	public boolean editUserAvatar(User u) {
 		try {
-		
+
 			String sql = "update user set usr_avtr = ? where usr_id = ?";
 			PreparedStatement ps = JdbcUtil.conn.prepareStatement(sql);
 			ps.setString(1, u.getUsr_avtr());
@@ -123,7 +123,6 @@ public class UserDao {
 		}
 		return true;
 	}
-	
 
 	public boolean queryUserName(String usr_name) {
 		try {
@@ -146,6 +145,29 @@ public class UserDao {
 			return false;
 		}
 		return true;
+	}
+
+	public User queryUserWithUserId(String usr_id) {
+		
+		User u = new User();
+
+		try {
+			String sql = "select * from user where usr_id = ?";
+			PreparedStatement ps = JdbcUtil.conn.prepareStatement(sql);
+			ps.setString(1, usr_id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				u.setUsr_id(rs.getString("usr_id"));
+				u.setUsr_avtr(rs.getString("usr_avtr"));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("query user with user id failed");
+			e.printStackTrace();
+			return null;
+		}
+		return u;
 	}
 
 }
