@@ -1,4 +1,4 @@
-package com.musi.enumeration;
+package ouc.musi.enumeration;
 
 import java.util.ArrayList;
 import java.util.List;

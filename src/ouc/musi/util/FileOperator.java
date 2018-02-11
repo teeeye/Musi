@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import com.musi.enumeration.FileType;
+import ouc.musi.enumeration.FileType;
 
 public class FileOperator {
 	

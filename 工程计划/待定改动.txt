@@ -1,3 +1,5 @@
 上传音乐的数据保存到 music表中，添加字段 audit : bool， 默认为 false表示还未审核，审核通过则置为false，未通过则删除该记录
 
 审核音乐只需要听音乐即可，不需要编辑信息，如果拒绝则可以填写拒绝理由
+
+所有servlet精确到第二级，即 localhost/Musi/music/upload 和 localhost/Music/musci/downlaod 由一个MusicServlet完成
