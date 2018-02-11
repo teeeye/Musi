@@ -4,14 +4,15 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import ouc.musi.enumeration.FileType;
+import com.musi.enumeration.FileType;
 
 public class FileOperator {
-
-	private static final String BASE_PATH = "/Users/wangchenghao1103/Documents/Musi/WebContent/";
-	private static final String MUSIC_PATH = "music/";
-	private static final String IMAGE_PATH = "image/";
 	
+	
+	public static final String MUSIC_PATH = "music/";
+	public static final String IMAGE_PATH = "image/";
+	public static final String BASE_PATH = "D:/musi/";
+
 	public static String getFilePath(String fileName, FileType type) {
 		StringBuffer path = new StringBuffer();
 		

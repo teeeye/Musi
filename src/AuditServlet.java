@@ -41,13 +41,14 @@ public class AuditServlet implements Servlet {
 
 	@Override
 	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 
 		Result result = null;
-		
+
 		boolean adt_pass = Boolean.valueOf(req.getParameter("adt_pass"));
-		
+
 		Music music = new Music();
-		
+
 		String ctgy = req.getParameter("msc_ctgy");
 		int msc_ctgy = ctgy == null ? 0 : Integer.parseInt(ctgy);
 		String msc_id = req.getParameter("msc_id");
@@ -62,13 +63,13 @@ public class AuditServlet implements Servlet {
 		music.setMsc_sngr(msc_sngr);
 		music.setMsc_ctgy(msc_ctgy);
 		music.setMsc_path(msc_path);
-		
+
 		if (adt_pass) {
 			result = adt_srv.addmusic(music);
 		} else {
 			result = adt_srv.rejectMusic(music);
 		}
-		
+
 		ResultWriter.writeResult(res, result);
 	}
 }

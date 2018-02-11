@@ -10,7 +10,9 @@ import com.alibaba.fastjson.JSON;
 import ouc.musi.domain.Result;
 
 public class ResultWriter {
+
 	public static void writeResult(ServletResponse res, Result result) {
+
 		try {
 			res.setCharacterEncoding("utf-8");
 			PrintWriter writer = res.getWriter();

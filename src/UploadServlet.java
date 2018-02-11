@@ -1,4 +1,10 @@
-import javax.servlet.*;
+import java.io.IOException;
+
+import javax.servlet.Servlet;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 
 import ouc.musi.domain.Audit_Music;
 import ouc.musi.domain.Result;
@@ -7,7 +13,7 @@ import ouc.musi.util.ResultWriter;
 
 public class UploadServlet implements Servlet {
 
-	private UploadService upld_srv = new UploadService();
+	private UploadService _uploadService = new UploadService();
 
 	@Override
 	public void destroy() {
@@ -34,26 +40,26 @@ public class UploadServlet implements Servlet {
 	}
 
 	@Override
-	public void service(ServletRequest req, ServletResponse res) {
+	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
 		// 获取参数
 		String musicName = req.getParameter("msc_name");
 		String base64Data = req.getParameter("msc_data");
-		
+
 		// 两个参数均不能为null，否则拒绝服务
 		if (musicName == null || base64Data == null) {
-			System.out.println("invalid data uploaded - name:"+musicName+" data:"+base64Data);
+			System.out.println("invalid data uploaded - name:" + musicName + " data:" + base64Data);
 			return;
 		}
-		
+
 		// 创建Domain
 		Audit_Music music = new Audit_Music();
 		music.setMsc_name(musicName);
-		
+
 		// 将base64文件存储到本地文件系统
-		Result result = upld_srv.uploadMusic(music, base64Data);
-		
+		Result result = _uploadService.uploadMusic(music, base64Data);
+
 		// 返回操作结果
 		ResultWriter.writeResult(res, result);
 	}

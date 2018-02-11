@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>Musi</display-name>
-  	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-    </welcome-file-list>
-    
-    <servlet>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
 		<servlet-name>UploadServlet</servlet-name>
 		<servlet-class>UploadServlet</servlet-class>
 	</servlet>
@@ -14,16 +18,7 @@
 		<url-pattern>/upload</url-pattern>
 	</servlet-mapping>
 	
-	<servlet>
-		<servlet-name>AuditQueryServlet</servlet-name>
-		<servlet-class>AuditQueryServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>AuditQueryServlet</servlet-name>
-		<url-pattern>/audit/query</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
+	 <servlet>
 		<servlet-name>AuditServlet</servlet-name>
 		<servlet-class>AuditServlet</servlet-class>
 	</servlet>
@@ -32,4 +27,228 @@
 		<url-pattern>/audit/submit</url-pattern>
 	</servlet-mapping>
 	
+	 <servlet>
+		<servlet-name>AuditQueryServlet</servlet-name>
+		<servlet-class>AuditQueryServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AuditQueryServlet</servlet-name>
+		<url-pattern>/audit/query</url-pattern>
+	</servlet-mapping>
+	
+	 <servlet>
+		<servlet-name>MusicLikeServlet</servlet-name>
+		<servlet-class>MusicLikeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MusicLikeServlet</servlet-name>
+		<url-pattern>/like</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>KeyWordQueryMusicServlet</servlet-name>
+		<servlet-class>KeyWordQueryMusicServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>KeyWordQueryMusicServlet</servlet-name>
+		<url-pattern>/music/query/keyword </url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AddToPlaylistServlet</servlet-name>
+		<servlet-class>AddToPlaylistServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddToPlaylistServlet</servlet-name>
+		<url-pattern>/playlist/add</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>RemoveFromPlaylistServlet</servlet-name>
+		<servlet-class>RemoveFromPlaylistServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RemoveFromPlaylistServlet</servlet-name>
+		<url-pattern>/playlist/remove</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AlbumQueryMusicServlet</servlet-name>
+		<servlet-class>AlbumQueryMusicServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AlbumQueryMusicServlet</servlet-name>
+		<url-pattern>/music/query/album</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>NewPlaylistServlet</servlet-name>
+		<servlet-class>NewPlaylistServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NewPlaylistServlet</servlet-name>
+		<url-pattern>/playlist/create</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SingerQueryMusicServlet</servlet-name>
+		<servlet-class>SingerQueryMusicServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SingerQueryMusicServlet</servlet-name>
+		<url-pattern>/music/query/singer</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>EditPlaylistServlet</servlet-name>
+		<servlet-class>EditPlaylistServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EditPlaylistServlet</servlet-name>
+		<url-pattern>/playlist/edit</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>RegisterServlet</servlet-name>
+		<servlet-class>RegisterServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RegisterServlet</servlet-name>
+		<url-pattern>/register</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>LoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoginServlet</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>DownloadServlet</servlet-name>
+		<servlet-class>DownloadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DownloadServlet</servlet-name>
+		<url-pattern>/music/download</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CategoryQueryMusicServlet</servlet-name>
+		<servlet-class>CategoryQueryMusicServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CategoryQueryMusicServlet</servlet-name>
+		<url-pattern>/music/query/category</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>NewHitListServlet</servlet-name>
+		<servlet-class>NewHitListServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NewHitListServlet</servlet-name>
+		<url-pattern>/music/new</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>RemovePlaylistServlet</servlet-name>
+		<servlet-class>RemovePlaylistServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RemovePlaylistServlet</servlet-name>
+		<url-pattern>/playlist/delete </url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SharedPlaylistServlet</servlet-name>
+		<servlet-class>SharedPlaylistServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SharedPlaylistServlet</servlet-name>
+		<url-pattern>/playlist/share</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>QueryPlaylistServlet</servlet-name>
+		<servlet-class>QueryPlaylistServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>QueryPlaylistServlet</servlet-name>
+		<url-pattern>/playlist/query</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CollectPlaylistServlet</servlet-name>
+		<servlet-class>CollectPlaylistServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CollectPlaylistServlet</servlet-name>
+		<url-pattern>/playlist/favorite</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>EditUserInfoServlet</servlet-name>
+		<servlet-class>EditUserInfoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EditUserInfoServlet</servlet-name>
+		<url-pattern>/user/edit/info</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>EditUserAvatarServlet</servlet-name>
+		<servlet-class>EditUserAvatarServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EditUserAvatarServlet</servlet-name>
+		<url-pattern>/user/edit/avatar</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AddCommentServlet</servlet-name>
+		<servlet-class>AddCommentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddCommentServlet</servlet-name>
+		<url-pattern>/comment/add</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>RemoveCommentServlet</servlet-name>
+		<servlet-class>RemoveCommentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RemoveCommentServlet</servlet-name>
+		<url-pattern>/comment/delete</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>QueryCommentServlet</servlet-name>
+		<servlet-class>QueryCommentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>QueryCommentServlet</servlet-name>
+		<url-pattern>/comment/query</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CommentLikeServlet</servlet-name>
+		<servlet-class>CommentLikeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CommentLikeServlet</servlet-name>
+		<url-pattern>/comment/like</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CommentReplyServlet</servlet-name>
+		<servlet-class>CommentReplyServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CommentReplyServlet</servlet-name>
+		<url-pattern>/comment/reply</url-pattern>
+	</servlet-mapping>
 </web-app>

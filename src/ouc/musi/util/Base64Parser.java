@@ -1,6 +1,6 @@
 package ouc.musi.util;
 
-import org.apache.commons.codec.binary.Base64;
+import org.apache.tomcat.util.codec.binary.Base64;
 
 public class Base64Parser {
 	

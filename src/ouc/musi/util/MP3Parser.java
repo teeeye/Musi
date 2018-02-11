@@ -16,7 +16,7 @@ public class MP3Parser {
 	public static int getLength(File file) {
 
 		try {
-			
+
 			InputStream input = new FileInputStream(file);
 			ContentHandler handler = new DefaultHandler();
 			Metadata metadata = new Metadata();
@@ -25,7 +25,7 @@ public class MP3Parser {
 			parser.parse(input, handler, metadata, parseCtx);
 			input.close();
 
-			int msc_lnth = (int)Double.parseDouble(metadata.get("xmpDM:duration")) / 1000;
+			int msc_lnth = (int) Double.parseDouble(metadata.get("xmpDM:duration")) / 1000;
 			return msc_lnth;
 
 		} catch (Exception e) {
