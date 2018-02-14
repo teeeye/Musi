@@ -189,8 +189,6 @@ URL：playlist/create
 参数：
 usr_id : String
 创建者用户ID
-plylst_name : String
-新创建的歌单名称
 返回值：
 {success:true, plylst_id: “123”} 
 创建成功，返回歌单ID
@@ -289,7 +287,7 @@ usr_phn_nmb : String
 usr_pwd : String
 注册用户密码（32位MD5值）
 返回值：
-{success:true, usr_id:123} 
+{success:true, data: {usr_id:123, usr_name:… plylsts:[…]}} 
 注册成功，返回用户ID
 {success:false, reason: “foo”}
 注册失败，并说明原因（参数不正确或者手机号被占用或者服务器内部原因）

@@ -12,10 +12,12 @@ public class UploadService {
 	
 	private UploadDao upld_dao = new UploadDao();
 
-	/* @func uploadMusic
-	 * @desc 将base64编码数据解码后存储到文件系统并在数据库的audit表中增加相应记录
-	 * @param music			music_name的封装类
-	 * @param base64data		音乐的base64编码
+	/* 
+	 * @func 	uploadMusic
+	 * @desc 	将base64编码数据解码后存储到文件系统并在数据库的audit表中增加相应记录
+	 * @param 	music			music_name的封装类
+	 * @param 	base64data		音乐的base64编码
+	 * @return 	result			此次操作的结果
 	 */
 	public Result uploadMusic(Audit_Music music, String base64data){
 
@@ -35,7 +37,7 @@ public class UploadService {
 			
 			// 如果数据库操作失败则删除文件
 			if (!success) {
-				FileOperator.deleteFile(filePath, FileType.MP3);
+				FileOperator.deleteFile(filePath);
 			}
 		}
 		

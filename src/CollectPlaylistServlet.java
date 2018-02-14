@@ -6,8 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+import ouc.musi.domain.Playlist;
 import ouc.musi.domain.Result;
-import ouc.musi.domain.User_Playlist;
 import ouc.musi.service.CollectPlaylistService;
 import ouc.musi.util.ResultWriter;
 
@@ -42,7 +42,7 @@ public class CollectPlaylistServlet implements Servlet {
 	@Override
 	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		User_Playlist usr_plylst = new User_Playlist();
+		Playlist usr_plylst = new Playlist();
 		usr_plylst.setPlylst_id(req.getParameter("plylst_id"));
 		usr_plylst.setUsr_id(req.getParameter("usr_id"));
 

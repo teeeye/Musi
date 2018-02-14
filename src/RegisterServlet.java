@@ -43,7 +43,6 @@ public class RegisterServlet implements Servlet {
 	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		User user = new User();
 		String usr_phn_nmb = req.getParameter("usr_phn_nmb");
 		String usr_pwd = req.getParameter("usr_pwd");
 
@@ -52,6 +51,7 @@ public class RegisterServlet implements Servlet {
 			return;
 		}
 
+		User user = new User();
 		user.setUsr_phn_nmb(usr_phn_nmb);
 		user.setUsr_pwd(usr_pwd);
 

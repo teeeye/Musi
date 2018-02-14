@@ -7,6 +7,7 @@ public class Playlist {
 	private String plylst_name;
 	private String plylst_cvr;
 	private int plylst_hot;
+	private String plylst_date;
 	
 	public String getPlylst_id() {
 		return plylst_id;
@@ -37,6 +38,12 @@ public class Playlist {
 	}
 	public void setPlylst_hot(int plylst_hot) {
 		this.plylst_hot = plylst_hot;
+	}
+	public String getPlylst_date() {
+		return plylst_date;
+	}
+	public void setPlylst_date(String plylst_date) {
+		this.plylst_date = plylst_date;
 	}
 	
 

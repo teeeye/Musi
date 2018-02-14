@@ -3,6 +3,10 @@ package ouc.musi.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.alibaba.fastjson.JSON;
 
 import ouc.musi.domain.Album;
 import ouc.musi.domain.Music;
@@ -11,8 +15,6 @@ import ouc.musi.domain.Singer;
 import ouc.musi.util.JdbcUtil;
 
 public class MusicDao {
-
-	private MusicDao msc_dao = new MusicDao();
 
 	public boolean addMusicLike(Music_Like msc_like) {
 		try {
@@ -92,12 +94,12 @@ public class MusicDao {
 			}
 
 			if (msc_like2.getMsc_id().length() == 32 && msc_like2.getUsr_id().length() == 32) {
-				msc_dao.deleteMusicLike(msc_like);
-				msc_dao.plusMusicHot(msc_like.getMsc_id());
+				deleteMusicLike(msc_like);
+				plusMusicHot(msc_like.getMsc_id());
 
 			} else {
-				msc_dao.addMusicLike(msc_like);
-				msc_dao.addMusicHot(msc_like.getMsc_id());
+				addMusicLike(msc_like);
+				addMusicHot(msc_like.getMsc_id());
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -142,7 +144,6 @@ public class MusicDao {
 
 	public void playMusic(String msc_id) {
 		try {
-
 			String sql = "update music set msc_hot = msc_hot+1 where msc_id = ?";
 			PreparedStatement ps = JdbcUtil.conn.prepareStatement(sql);
 			ps.setString(1, msc_id);
@@ -154,52 +155,39 @@ public class MusicDao {
 		}
 	}
 
-	@SuppressWarnings("null")
-	public Music[] keyWordQuery(String keyWord, int page) {
-		Music[] rslt_array = null;
+	public List<Music> keyWordQuery(String keyWord, int page) {
+		
+		if (keyWord == null || page < 0) {
+			return null;
+		}
+		
+		List<Music> result = new ArrayList<Music>(20);
+		
 		try {
 			int num = (page + 1) * 20;
-			Music music = new Music();
-			Music[] music_array = null;
-			StringBuffer sql = null;
-			if (page >= 0) {
-				if (keyWord == null) {
-					sql = new StringBuffer("select * from music");
-				} else {
-					sql = new StringBuffer("select * from music where msc_name like '%");
-					sql.append(keyWord);
-					sql.append("%'");
-				}
-				sql.append(" limit ");
-				sql.append(num);
-			} else {
-				return null;
-			}
+			StringBuffer sql = new StringBuffer("select * from music where msc_name like '%");
+			sql.append(keyWord);
+			sql.append("%' limit ");
+			sql.append(num);
 
-			PreparedStatement ps = JdbcUtil.conn.prepareStatement(String.valueOf(sql));
+			PreparedStatement ps = JdbcUtil.conn.prepareStatement(sql.toString());
 
 			ResultSet rs = null;
 			rs = ps.executeQuery();
-			for (int i = 0; i < num; i++) {
-				while (rs.next()) {
-					music.setMsc_id(rs.getString("msc_id"));
-					music.setMsc_albm(rs.getString("msc_albm"));
-					music.setMsc_ctgy(rs.getInt("msc_ctgy"));
-					music.setMsc_hot(rs.getInt("msc_hot"));
-					music.setMsc_lnth(rs.getInt("msc_lnth"));
-					music.setMsc_name(rs.getString("msc_name"));
-					music.setMsc_path(rs.getString("msc_pth"));
-					music.setMsc_sngr(rs.getString("msc_sngr"));
-					music_array[i] = music;
+			while (rs.next()) {
+				if (--num >= 20) {
+					continue;
 				}
-			}
-			if (page == 0) {
-				return music_array;
-			} else {
-				for (int i = 0; i < 20; i++)
-					for (int j = page * 20; j < (page + 1) * 20; j++) {
-						rslt_array[i] = music_array[j];
-					}
+				Music music = new Music();
+				music.setMsc_id(rs.getString("msc_id"));
+				music.setMsc_albm(rs.getString("msc_albm"));
+				music.setMsc_ctgy(rs.getInt("msc_ctgy"));
+				music.setMsc_hot(rs.getInt("msc_hot"));
+				music.setMsc_lnth(rs.getInt("msc_lnth"));
+				music.setMsc_name(rs.getString("msc_name"));
+				music.setMsc_path(rs.getString("msc_pth"));
+				music.setMsc_sngr(rs.getString("msc_sngr"));
+				result.add(music);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -207,97 +195,83 @@ public class MusicDao {
 			e.printStackTrace();
 			return null;
 		}
-		return rslt_array;
-	}
-
-	@SuppressWarnings("null")
-	public Music[] categoryQuery(int ctgy_id, int page) {
-		int num = (page + 1) * 20;
-		Music music = new Music();
-		Music[] music_array = null;
-		Music[] result = null;
-		StringBuffer sql = new StringBuffer("select * from music where msc_ctgy = ?");
-		sql.append(" limit ");
-		sql.append(num);
-
-		try {
-			PreparedStatement ps = JdbcUtil.conn.prepareStatement(String.valueOf(sql));
-			ps.setInt(1, ctgy_id);
-			ResultSet rs = ps.executeQuery();
-
-			for (int i = 0; i < num; i++) {
-				while (rs.next()) {
-					music.setMsc_id(rs.getString("msc_id"));
-					music.setMsc_albm(rs.getString("msc_albm"));
-					music.setMsc_hot(rs.getInt("msc_hot"));
-					music.setMsc_lnth(rs.getInt("msc_lnth"));
-					music.setMsc_name(rs.getString("msc_name"));
-					music.setMsc_path(rs.getString("msc_pth"));
-					music.setMsc_sngr(rs.getString("msc_sngr"));
-					music.setMsc_ctgy(rs.getInt("msc_ctgy"));
-					music_array[i] = music;
-				}
-			}
-
-			if (page == 0) {
-				return music_array;
-			} else {
-				for (int i = 0; i < 20; i++)
-					for (int j = page * 20; j < (page + 1) * 20; j++) {
-						result[i] = music_array[j];
-					}
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
 		return result;
 	}
 
-	@SuppressWarnings("null")
-	public Music[] singerQuery(Singer sngr, int page) {
+//	public List<Music> categoryQuery(int ctgy_id, int page) {
+//		int num = (page + 1) * 20;
+//		Music music = new Music();
+//		Music[] music_array = null;
+//		Music[] result = null;
+//		StringBuffer sql = new StringBuffer("select * from music where msc_ctgy = ?");
+//		sql.append(" limit ");
+//		sql.append(num);
+//
+//		try {
+//			PreparedStatement ps = JdbcUtil.conn.prepareStatement(String.valueOf(sql));
+//			ps.setInt(1, ctgy_id);
+//			ResultSet rs = ps.executeQuery();
+//
+//			for (int i = 0; i < num; i++) {
+//				while (rs.next()) {
+//					music.setMsc_id(rs.getString("msc_id"));
+//					music.setMsc_albm(rs.getString("msc_albm"));
+//					music.setMsc_hot(rs.getInt("msc_hot"));
+//					music.setMsc_lnth(rs.getInt("msc_lnth"));
+//					music.setMsc_name(rs.getString("msc_name"));
+//					music.setMsc_path(rs.getString("msc_pth"));
+//					music.setMsc_sngr(rs.getString("msc_sngr"));
+//					music.setMsc_ctgy(rs.getInt("msc_ctgy"));
+//					music_array[i] = music;
+//				}
+//			}
+//
+//			if (page == 0) {
+//				return music_array;
+//			} else {
+//				for (int i = 0; i < 20; i++)
+//					for (int j = page * 20; j < (page + 1) * 20; j++) {
+//						result[i] = music_array[j];
+//					}
+//			}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			return null;
+//		}
+//		return result;
+//	}
+
+	public List<Music> singerQuery(Singer sngr, int page) {
 		int num = (page + 1) * 20;
-		Music music = new Music();
-		Music[] music_array = null;
-		Music[] result = null;
+		List<Music> result = new ArrayList<Music>();
 		StringBuffer sql = new StringBuffer(
 				"select m.* from music m, singer_music s_m where s_m.msc_id = m.msc_id and ");
-		PreparedStatement ps = null;
 		sql.append(sngr.getSngr_id() != null ? "s_m.sngr_id = ?" : "s_m.sngr_name = ?");
 		sql.append(" limit ");
 		sql.append(num);
 		try {
+			PreparedStatement ps = JdbcUtil.conn.prepareStatement(sql.toString());
 			ps.setString(1, (sngr.getSngr_id() != null) ? sngr.getSngr_id() : sngr.getSngr_name());
-			ps = JdbcUtil.conn.prepareStatement(String.valueOf(sql));
 			ResultSet rs = null;
 			rs = ps.executeQuery();
 
-			for (int i = 0; i < num; i++) {
-				while (rs.next()) {
-					music.setMsc_id(rs.getString("msc_id"));
-					music.setMsc_albm(rs.getString("msc_albm"));
-					music.setMsc_ctgy(rs.getInt("msc_ctgy"));
-					music.setMsc_hot(rs.getInt("msc_hot"));
-					music.setMsc_lnth(rs.getInt("msc_lnth"));
-					music.setMsc_name(rs.getString("msc_name"));
-					music.setMsc_path(rs.getString("msc_pth"));
-					music.setMsc_sngr(rs.getString("msc_sngr"));
-					music_array[i] = music;
+			while (rs.next()) {
+				if (--num >= 20) {
+					continue;
 				}
+				Music music = new Music();
+				music.setMsc_id(rs.getString("msc_id"));
+				music.setMsc_albm(rs.getString("msc_albm"));
+				music.setMsc_ctgy(rs.getInt("msc_ctgy"));
+				music.setMsc_hot(rs.getInt("msc_hot"));
+				music.setMsc_lnth(rs.getInt("msc_lnth"));
+				music.setMsc_name(rs.getString("msc_name"));
+				music.setMsc_path(rs.getString("msc_pth"));
+				music.setMsc_sngr(rs.getString("msc_sngr"));
+				result.add(music);
 			}
-
-			if (page == 0) {
-				return music_array;
-			} else {
-				for (int i = 0; i < 20; i++)
-					for (int j = page * 20; j < (page + 1) * 20; j++) {
-						result[i] = music_array[j];
-					}
-			}
-
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -357,38 +331,46 @@ public class MusicDao {
 		return result;
 	}
 
-	@SuppressWarnings("null")
-	public Music[] queryHitList() {
-		Music[] music_array = null;
-		try {
+//	@SuppressWarnings("null")
+//	public Music[] queryHitList() {
+//		Music[] music_array = null;
+//		try {
+//
+//			String sql = "select m.* from music m, album a where a.albm_id = m.msc_albm order by a.albm_date limit 100";
+//
+//			PreparedStatement ps = JdbcUtil.conn.prepareStatement(sql);
+//
+//			ResultSet rs = ps.executeQuery();
+//			Music music = new Music();
+//			for (int i = 0; i < 100; i++) {
+//				while (rs.next()) {
+//					music.setMsc_id(rs.getString("msc_id"));
+//					music.setMsc_albm(rs.getString("msc_albm"));
+//					music.setMsc_ctgy(rs.getInt("msc_ctgy"));
+//					music.setMsc_hot(rs.getInt("msc_hot"));
+//					music.setMsc_lnth(rs.getInt("msc_lnth"));
+//					music.setMsc_name(rs.getString("msc_name"));
+//					music.setMsc_path(rs.getString("msc_pth"));
+//					music.setMsc_sngr(rs.getString("msc_sngr"));
+//					music_array[i] = music;
+//				}
+//			}
+//
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			System.out.println("failed in querying new hit list");
+//			e.printStackTrace();
+//			return null;
+//		}
+//		return music_array;
+//	}
 
-			String sql = "select m.* from music m, album a where a.albm_id = m.msc_albm order by a.albm_date limit 100";
-
-			PreparedStatement ps = JdbcUtil.conn.prepareStatement(sql);
-
-			ResultSet rs = ps.executeQuery();
-			Music music = new Music();
-			for (int i = 0; i < 100; i++) {
-				while (rs.next()) {
-					music.setMsc_id(rs.getString("msc_id"));
-					music.setMsc_albm(rs.getString("msc_albm"));
-					music.setMsc_ctgy(rs.getInt("msc_ctgy"));
-					music.setMsc_hot(rs.getInt("msc_hot"));
-					music.setMsc_lnth(rs.getInt("msc_lnth"));
-					music.setMsc_name(rs.getString("msc_name"));
-					music.setMsc_path(rs.getString("msc_pth"));
-					music.setMsc_sngr(rs.getString("msc_sngr"));
-					music_array[i] = music;
-				}
-			}
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.println("failed in querying new hit list");
-			e.printStackTrace();
-			return null;
-		}
-		return music_array;
+	public static void main(String[] args) {
+		MusicDao dao = new MusicDao();
+		Singer sngr = new Singer();
+		sngr.setSngr_name("foo");
+		List<Music> result = dao.singerQuery(sngr, 0);
+		System.out.println(JSON.toJSONString(result));
 	}
-
+	
 }

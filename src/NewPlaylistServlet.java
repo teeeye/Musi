@@ -44,7 +44,6 @@ public class NewPlaylistServlet implements Servlet {
 		// TODO Auto-generated method stub
 		
 		Playlist plylst = new Playlist();
-		plylst.setPlylst_name(req.getParameter("plylst_name"));
 		plylst.setUsr_id(req.getParameter("usr_id"));
 		
 		Result result = _newPlaylistService.newPlaylist(plylst);
