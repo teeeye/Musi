@@ -3,12 +3,15 @@ package ouc.musi.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import ouc.musi.domain.Playlist;
 import ouc.musi.domain.Playlist_Music;
 import ouc.musi.domain.Shared_Playlist;
-import ouc.musi.domain.User_Playlist;
+import ouc.musi.util.Configure;
 import ouc.musi.util.JdbcUtil;
+import ouc.musi.util.UUIDGenerator;
 
 public class PlaylistDao {
 
@@ -24,6 +27,7 @@ public class PlaylistDao {
 			ps.setString(2, msc_id);
 
 			ps.execute();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("add music to playlist failed");
@@ -59,15 +63,21 @@ public class PlaylistDao {
 	public boolean newPlaylist(Playlist plylst) {
 		try {
 
-			String sql = "insert into playlist (plylst_id, usr_id, plylst_name, plylst_cvr, plylst_hot)values(?,?,?,?,?)";
+			String plylst_id = UUIDGenerator.getUUID();
+			plylst.setPlylst_id(plylst_id);
+			plylst.setPlylst_hot(0);
+			if (plylst.getPlylst_name() == null) {
+				plylst.setPlylst_name("新建歌单");
+			}
+			plylst.setPlylst_cvr(Configure.DEFAULT_PLAYLIST_COVER_PATH);
+			
+			String sql = "insert into playlist (plylst_id, usr_id, plylst_name, plylst_cvr, plylst_date)values(?,?,?,?, curdate())";
 
 			PreparedStatement ps = JdbcUtil.conn.prepareStatement(sql);
 			ps.setString(1, plylst.getPlylst_id());
 			ps.setString(2, plylst.getUsr_id());
 			ps.setString(3, plylst.getPlylst_name());
 			ps.setString(4, plylst.getPlylst_cvr());
-			ps.setInt(5, plylst.getPlylst_hot());
-
 			ps.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -150,10 +160,9 @@ public class PlaylistDao {
 		return plylst;
 	}
 
-	public Playlist queryWithUserId(String usr_id) {
-
-		Playlist plylst = new Playlist();
-
+	public List<Playlist> queryWithUserId(String usr_id) {
+		
+		List<Playlist> result = new ArrayList<Playlist>();
 		try {
 
 			String sql = "select * from playlist where usr_id = ?";
@@ -164,19 +173,21 @@ public class PlaylistDao {
 			ResultSet rs = null;
 			rs = ps.executeQuery();
 			while (rs.next()) {
+				Playlist plylst = new Playlist();
 				plylst.setPlylst_cvr(rs.getString("plylst_cvr"));
-				plylst.setPlylst_hot(rs.getInt("plylst_id"));
 				plylst.setPlylst_name(rs.getString("plylst_name"));
 				plylst.setPlylst_id(rs.getString("plylst_id"));
+				plylst.setPlylst_date(rs.getString("plylst_date"));
+				plylst.setUsr_id(usr_id);
+				result.add(plylst);
 			}
-
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("failed in querying playlist with user id");
 			e.printStackTrace();
 			return null;
 		}
-		return plylst;
+		return result;
 	}
 
 	public boolean removePlaylist(String plylst_id) {
@@ -320,10 +331,10 @@ public class PlaylistDao {
 		return rslt_array;
 	}
 
-	public boolean collectPlaylist(User_Playlist usr_plylst) {
+	public boolean collectPlaylist(Playlist usr_plylst) {
 		try {
 			PlaylistDao plylst_dao = new PlaylistDao();
-			User_Playlist u = new User_Playlist();
+			Playlist u = new Playlist();
 
 			String sql = "select * from user_playlist where usr_id = ? and plylst_id = ?";
 
@@ -354,7 +365,7 @@ public class PlaylistDao {
 		return true;
 	}
 
-	public boolean addUserPlaylist(User_Playlist usr_plylst) {
+	public boolean addUserPlaylist(Playlist usr_plylst) {
 		try {
 			String sql = "insert into user_playlist (usr_id, plylst_id)values(?,?)";
 			PreparedStatement ps = JdbcUtil.conn.prepareStatement(sql);
@@ -370,7 +381,7 @@ public class PlaylistDao {
 		return true;
 	}
 
-	public boolean deleteUserPlaylist(User_Playlist usr_plylst) {
+	public boolean deleteUserPlaylist(Playlist usr_plylst) {
 		try {
 			String sql = "delete from user_playlist where usr_id = ? and plylst_id = ?";
 			PreparedStatement ps = JdbcUtil.conn.prepareStatement(sql);

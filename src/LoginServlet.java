@@ -43,10 +43,18 @@ public class LoginServlet implements Servlet {
 	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		User user = new User();
-		user.setUsr_name(req.getParameter("usr_name"));
-		user.setUsr_pwd(req.getParameter("usr_pwd"));
+		String usr_phn_nmb = req.getParameter("usr_phn_nmb");
+		String usr_pwd = req.getParameter("usr_pwd");
 
+		if (usr_phn_nmb.length() != 11 || usr_pwd.length() != 32) {
+			System.out.println("invalid user-phone-number or user-password");
+			return;
+		}
+
+		User user = new User();
+		user.setUsr_phn_nmb(usr_phn_nmb);
+		user.setUsr_pwd(usr_pwd);
+		
 		Result result = _loginService.login(user);
 		ResultWriter.writeResult(res, result);
 

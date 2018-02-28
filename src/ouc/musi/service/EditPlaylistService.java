@@ -21,7 +21,7 @@ public class EditPlaylistService {
 			if (success) {
 				success = plylst_dao.editPlaylist(plylst, filePath);
 				if (!success) {
-					FileOperator.deleteFile(filePath, FileType.PNG);
+					FileOperator.deleteFile(filePath);
 				}
 			}
 		}

@@ -1,5 +1,7 @@
 package ouc.musi.domain;
 
+import java.util.List;
+
 public class User {
 
 	private String usr_id;
@@ -7,14 +9,9 @@ public class User {
 	private String usr_phn_nmb;
 	private String usr_avtr;
 	private String usr_pwd;
-	private Playlist plylst;
+	private List<Playlist> plylsts;
 	
-	public Playlist getPlylst() {
-		return plylst;
-	}
-	public void setPlylst(Playlist plylst) {
-		this.plylst = plylst;
-	}
+
 	public String getUsr_id() {
 		return usr_id;
 	}
@@ -44,5 +41,11 @@ public class User {
 	}
 	public void setUsr_pwd(String usr_pwd) {
 		this.usr_pwd = usr_pwd;
+	}
+	public List<Playlist> getPlylsts() {
+		return plylsts;
+	}
+	public void setPlylsts(List<Playlist> plylsts) {
+		this.plylsts = plylsts;
 	}
 }

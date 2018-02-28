@@ -8,18 +8,13 @@ import ouc.musi.enumeration.FileType;
 
 public class FileOperator {
 	
-	
-	public static final String MUSIC_PATH = "music/";
-	public static final String IMAGE_PATH = "image/";
-	public static final String BASE_PATH = "D:/musi/";
-
 	public static String getFilePath(String fileName, FileType type) {
 		StringBuffer path = new StringBuffer();
 		
 		if (type == FileType.MP3) {
-			path.append(MUSIC_PATH);
+			path.append(Configure.MUSIC_PATH);
 		} else if(type == FileType.PNG){
-			path.append(IMAGE_PATH);
+			path.append(Configure.IMAGE_PATH);
 		}
 		
 		path.append(fileName);
@@ -35,7 +30,7 @@ public class FileOperator {
 	
 	public static int getMusicLength(String filePath) {
 		StringBuffer path = new StringBuffer();
-		path.append(BASE_PATH + filePath);
+		path.append(Configure.BASE_PATH + filePath);
 		File file = new File(path.toString());
 		
 		if (!file.exists()) {
@@ -49,7 +44,7 @@ public class FileOperator {
 
 		byte[] file_data = Base64Parser.Base64Decode(fileData);
 		
-		File file = new File(BASE_PATH + path);
+		File file = new File(Configure.BASE_PATH + path);
 		
 		if (!file.exists()) {
 			try {
@@ -71,9 +66,9 @@ public class FileOperator {
 		return true;
 	}
 	
-	public static void deleteFile(String path, FileType type) {
+	public static void deleteFile(String path) {
 				
-		File file = new File(path);
+		File file = new File(Configure.BASE_PATH+ path);
 		
 		if (file.exists()) {
 			file.delete();

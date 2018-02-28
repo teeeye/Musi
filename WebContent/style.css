@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 * {
     padding: 0;
     margin: 0;
@@ -124,8 +126,29 @@ div {
     margin-right: 20px;
 }
 
+.header--user--welcome {
+	color: #666;
+    line-height: 52px;
+    font-size: 12px;
+}
+
+.header--user--welcome:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.header--user--welcome::before {
+	content: "你好，";
+}
+
+.header--user--welcome::after {
+	content: "!";
+}
+
 .header--user--login-register {
     color: dimgray;
+    line-height: 52px;
+    font-size: 13px;
 }
 
 .header--user--login-register:hover {
@@ -326,6 +349,23 @@ div {
     line-height: 52px;
 }
 
+.play-music-title-container {
+	float: left;
+	position: relative;
+	width: 100px;
+	height: 52px;
+	line-height: 52px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: clip;
+}
+
+.play-music-title {
+	position: absolute;
+	color: white;
+	font-size: 12px;
+}
+
 .play-button {
     float: left;
     color: white;
@@ -336,11 +376,13 @@ div {
 }
 
 .play-button__play::before {
-	content: "▶";
+	font-family: FontAwesome;
+	content: "\f04b";
 }
 
 .play-button__pause::before {
-	content: "◼︎";
+	font-family: FontAwesome;
+	content: "\f04c";
 }
 
 .play-button:hover {
@@ -383,7 +425,64 @@ div {
     border-radius: 7px;
 }
 
-.progress-button:hover {
+.player-volume {
+	width: 150px;
+	float: left;
+	height: 52px;
+	line-height: 52px;
+	font-family: FontAwesome;
+	color: white;
+	font-size: 1.2em;
+}
+
+.player-volume:hover {
+	cursor: pointer;
+}
+
+.player-volume::before {
+	content: "\f026";
+}
+
+.player-volume__high::before {
+	content: "\f028";
+}
+
+.player-volume-bar_container {
+    position: relative;
+    float: right;
+    width: 100px;
+    height: 4px;
+    padding: 24px 20px;
+}
+
+.player-volume-bar_background {
+    position: absolute;
+    width: 100px;
+    height: 4px;
+    border-radius: 2px;
+    background-color: rgba(255,255,255,0.2);
+}
+
+.player-volume-bar_trace {
+    position: absolute;
+    height: 4px;
+    width: 100px;
+    background-color: white;
+    border-radius: 2px;
+}
+
+.player-volume-bar-button {
+    position: absolute;
+    top: 19px;
+    left: 108px;
+    width: 14px;
+    height: 14px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    border-radius: 7px;
+}
+
+.player-volume-bar-button:hover {
     cursor: pointer;
 }
 
@@ -477,8 +576,12 @@ div {
     padding-top: 10px;
     display: block;
     line-height: 20px;
-    font-size: 20px;
+    font-size: 12px;
     font-weight: 500;
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .audit-item--id {
@@ -581,6 +684,7 @@ div {
 
 .search {
     margin-top: 92px;
+    min-height: 500px;
 }
 
 .search-view {
@@ -862,7 +966,7 @@ div {
 	cursor: pointer;	
 }
 
-.user-avatar-edit {
+.user-avatar--edit {
 	position: absolute;
 	top: 128px;
 	height: 20px;
@@ -875,7 +979,7 @@ div {
 	-webkit-transition: all ease-in-out 0.2s;
 }
 
-.user-avatar-edit__shown {
+.user-avatar--edit__shown {
 	top: 108px;
 }
 
@@ -888,32 +992,39 @@ div {
 }
 
 .user-info--user-name {
-	border-bottom: 1px solid #eee;
+	height: 30px;
 }
 
 .user-name {
-	width: 200px;
-	margin-right: 200px;
+	float: left;
+	width: 398px;
 	height: 30px;
+	line-height: 30px;
 	border: 1px solid rgba(0,0,0,0);
 	outline: none;
 }
 
-.user-name--label {
-	display: inline-block;
-	width: 100px;
-	color: #ccc;
+.user-name__editing {
+	border: 1px solid #ccc;
 }
 
-.user-name--edit {
-	display: inline-block;
-	width: 80px;
-	text-align: right;
+.user-name--label {
+	width: 100px;
+	color: #ccc;
+	float: left;
+	line-height: 30px;
+}
+
+.user-name--edit, .user-name--save {
+	line-height: 30px;
+	float: right;
+	width: 50px;
+	text-align: center;
 	font-size: 0.8em;
 	color: #777;
 }
 
-.user-name--edit:hover {
+.user-name--edit:hover, .user-name--save:hover {
 	cursor: pointer;
 	text-decoration: underline;
 }
@@ -946,6 +1057,7 @@ div {
 .user-playlist--item {
 	height: 25px;
 	line-height: 25px;
+	padding-top: 20px;
 	width: 900px;
 	border-bottom: 1px solid #eee;
 }
@@ -954,10 +1066,27 @@ div {
 	height: 23px;
 	border: 1px solid rgba(0,0,0,0);
 	outline: none;
+	width: 400px;
 	font-size: 15px;
+}
+
+.user-playlist--item:hover {
+	cursor: pointer;
+	text-decoration: underline;
+	border-bottom: 1px solid #333;
 }
 
 .user-playlist--item--title:hover {
 	cursor: pointer;
+}
+
+user-playlist--action:hover {
+	cursor: pointer;
 	text-decoration: underline;
+}
+
+@font-face
+{
+font-family: FontAwesome;
+src: url('./font/fontawesome-webfont.ttf');
 }

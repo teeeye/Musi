@@ -12,19 +12,19 @@ public class EditUserAvatarService {
 
 	private UserDao user_dao = new UserDao();
 
-	public Result editUserAvatar(User u) {
+	public Result editUserAvatar(User u, String base64data) {
 
-		boolean success = false;
-		if (u.getUsr_avtr() != null) {
-			String picture_name = UUIDGenerator.getUUID();
-			String filePath = FileOperator.getFilePath(picture_name, FileType.PNG);
-			success = FileOperator.saveFile(filePath, u.getUsr_avtr());
-			if (success) {
-				u.setUsr_avtr(filePath);
-				success = user_dao.editUserAvatar(u);
-				if (!success) {
-					FileOperator.deleteFile(filePath, FileType.PNG);
-				}
+		String fileName = UUIDGenerator.getUUID();
+		String filePath = FileOperator.getFilePath(fileName, FileType.PNG);
+		
+		u.setUsr_avtr(filePath);
+		
+		boolean success = FileOperator.saveFile(filePath, base64data);
+		
+		if (success) {
+			success = user_dao.editUserAvatar(u);
+			if (!success) {
+				FileOperator.deleteFile(filePath);
 			}
 		}
 

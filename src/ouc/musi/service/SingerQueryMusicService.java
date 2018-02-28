@@ -1,5 +1,7 @@
 package ouc.musi.service;
 
+import java.util.List;
+
 import ouc.musi.dao.MusicDao;
 import ouc.musi.domain.Music;
 import ouc.musi.domain.Result;
@@ -11,7 +13,7 @@ public class SingerQueryMusicService {
 
 	public Result singerQuery(Singer sngr, int page) {
 		
-		Music[] result_array = msc_dao.singerQuery(sngr, page);
+		List<Music> result_array = msc_dao.singerQuery(sngr, page);
 		boolean success = (result_array != null);
 		String reason = success ? "OK" : "Server Error";
 		Result result = new Result(success, reason, result_array);

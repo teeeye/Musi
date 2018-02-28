@@ -2,4 +2,14 @@
 
 审核音乐只需要听音乐即可，不需要编辑信息，如果拒绝则可以填写拒绝理由
 
-所有servlet精确到第二级，即 localhost/Musi/music/upload 和 localhost/Music/musci/downlaod 由一个MusicServlet完成
+所有servlet精确到第二级，即 localhost/Musi/music/upload 和 localhost/Music/musci/downlaod 由一个MusicServlet完成(service也是)
+
+所有 service和dao的方法都是static
+
+playlist_dao 的接口太多，应该拆分
+
+喜欢音乐和音乐热度可以考虑拆分，涉及到缓存问题
+
+完善对错误信息的报告，不光是简单的一句“server error”
+
+歌单封面只有在share的时候设置
